@@ -3,11 +3,11 @@
 
 
 <div class="doc-head row" >
-  <div class="left "><h2>{$item.item_name}</h2></div>
+  <div class="left "><h2>{$item.name}</h2></div>
   <div class="right">
     <ul class="inline pull-right">
 
-      <if condition="$ItemPermn">
+      <if condition="$isItemMember">
       <li>
           <div class="btn-group ">
             <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
@@ -32,8 +32,7 @@
       <else />
 
       <if condition="! $login_user">
-        <li ><a href="{:U('Home/User/login')}">登录/注册</a></li>
-        <li ><a href="http://doc.star7th.com/3" target="_blank">关于ShowDoc</a></li>
+        <li ><a href="{:U('Home/Public/login')}">登录/注册</a></li>
         <else />
         <li><a href="{:U('Home/Item/index')}">我的项目</a></li>
       </if>
@@ -53,7 +52,7 @@
           <div class="input-append search-input-append">
             <i class="icon-blank"></i>
             <input type="text" name="keyword" class="search-query search-query-input" value="{$keyword}">
-            <input type="hidden" name="item_id" value="{$item.item_id}">
+            <input type="hidden" name="item_id" value="{$item.id}">
             <button type="submit" class="btn"><i class="icon-search"></i></button>
           </div>
         </form>
@@ -61,15 +60,15 @@
       <ul class="nav nav-list bs-docs-sidenav">
 
         <foreach name="pages" item="page">
-          <li ><a href="{:U('Home/Page/index')}?page_id={$page.page_id}" data-page-id="{$page.page_id}" ><i class="icon-blank"></i>{$page.page_title}</a></li>
+          <li ><a href="{:U('Home/Page/show')}?page_id={$page.id}" data-page-id="{$page.id}" ><i class="icon-blank"></i>{$page.title}</a></li>
         </foreach>
 
         <foreach name="catalogs" item="catalog">
 
-          <li><a href="#"><i class="icon-chevron-right"></i>{$catalog.cat_name}</a>
+          <li><a href="#"><i class="icon-chevron-right"></i>{$catalog.name}</a>
             <ul class="child-ul nav-list hide">
               <foreach name="catalog.pages" item="catalog_page">
-                <li><a href="{:U('Home/Page/index')}?page_id={$catalog_page.page_id}" data-page-id="{$catalog_page.page_id}" >{$catalog_page.page_title}</a></li>
+                <li><a href="{:U('Home/Page/show')}?page_id={$catalog_page.id}" data-page-id="{$catalog_page.id}" >{$catalog_page.title}</a></li>
               </foreach>
             </ul>
           </li>
@@ -80,15 +79,15 @@
       <!-- 新建栏 -->
       <div class="doc-left-newbar">
 
-        <if condition="$ItemPermn">
-          <div><a href="{:U('Home/Page/edit')}?item_id={$item.item_id}&type=new" id="new-like"><i class="icon-plus"></i>&nbsp;新建页面</a></div>
-          <div><a href="{:U('Home/Catalog/edit')}?item_id={$item.item_id}" id="dir-like" ><i class="icon-folder-open"></i>新建目录</a></div>
+        <if condition="$isItemMember">
+          <div><a href="{:U('Home/Page/index')}?item_id={$item.id}&type=new" id="new-like"><i class="icon-plus"></i>&nbsp;新建页面</a></div>
+          <div><a href="{:U('Home/Catalog/index')}?item_id={$item.id}" id="dir-like" ><i class="icon-folder-open"></i>新建目录</a></div>
 
         </if>
 
       </div>
 
-      <input type="hidden" id="item_id" value="{$item.item_id}">
+      <input type="hidden" id="item_id" value="{$item.id}">
       <input type="hidden" id="page_id" value="{$page_id}">
       <input type="hidden" id="base_url" value="__APP__">
 
@@ -98,7 +97,7 @@
       <!-- 编辑栏 -->
       <div class='page-edit-link pull-right hide'>
         <ul class="inline">
-          <if condition="$ItemPermn">
+          <if condition="$isItemMember">
             <li><a href="" id="share-page" title="分享该接口访问地址给你的好友">分享</a></li>
             <li><a href="" id="copy-link" title="复制该接口到新接口">复制</a></li>
             <li><a href="" id="edit-link" title="编辑接口">编辑</a></li>

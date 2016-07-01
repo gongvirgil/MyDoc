@@ -3,7 +3,7 @@ namespace Home\Model;
 use Think\Model;
 use Home\Model\BaseModel;
 
-class UserModel extends Model {
+class UserModel extends BaseModel {
 	/**
 	 * [userInfo description]
 	 * @param  [type] $username [description]

@@ -33,14 +33,14 @@ $(function(){
 
   //保存目录
   $("#save-cat").click(function(){
-      var cat_name = $("#cat_name").val();
+      var name = $("#name").val();
       var order = $("#order").val();
       var cat_id = $("#cat_id").val();
       $.post(
         "save",
-        {"cat_name": cat_name , "order": order , "item_id": item_id , "cat_id": cat_id  },
+        {"name": name , "order": order , "item_id": item_id , "cat_id": cat_id  },
         function(data){
-          if (data.error_code == 0) {
+          if (data.status == 1) {
             $("#delete-cat").hide();
             $("#cat_name").val('');
             $("#order").val('');
@@ -87,7 +87,7 @@ $(function(){
   })
 
   $(".exist-cat").click(function(){
-    window.location.href="../item/show?item_id="+item_id;
+    window.location.href="../item/show?id="+item_id;
   });
 
 

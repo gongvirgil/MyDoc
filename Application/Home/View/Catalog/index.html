@@ -11,19 +11,19 @@
       <h4>新建/编辑目录</h4>
       </div>
       <input type="hidden" id="item_id" value="{$item_id}">
-      <input type="hidden" id="cat_id" value="{$Catalog.cat_id}">
+      <input type="hidden" id="cat_id" value="{$catalog.id}">
       <div class="add-cat">
           <form class="form-horizontal">
             <div class="control-group">
               <label class="control-label" for="inputEmail">目录名</label>
               <div class="controls">
-                <input type="text" id="cat_name" placeholder="目录名" value="{$Catalog.cat_name}">
+                <input type="text" id="name" placeholder="目录名" value="{$catalog.name}">
               </div>
             </div>
             <div class="control-group">
               <label class="control-label" for="inputPassword">序号</label>
               <div class="controls">
-                <input type="text" id="order" placeholder="可选：顺序数字" value="{$Catalog.order}">
+                <input type="text" id="order" placeholder="可选：顺序数字" value="{$catalog.order}">
               </div>
             </div>
             <div class="control-group">
@@ -54,4 +54,4 @@
  </div>
 
  <include file="Common/footer" />
- <script src="__PUBLIC__/js/catalog/edit.js"></script>
+ <script src="__PUBLIC__/js/catalog/index.js"></script>

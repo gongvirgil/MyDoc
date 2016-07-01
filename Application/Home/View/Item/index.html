@@ -36,7 +36,7 @@
         </div>
 
         </ul>
-        <h3 class="muted">ShowDoc</h3>
+        <h3 class="muted">MyDoc</h3>
       </div>
 
       <hr>
@@ -46,8 +46,8 @@
 
         <foreach name="items" item="item">
           <li class="span3 text-center">
-            <a class="thumbnail" href="{:U('Home/Item/Show')}?item_id={$item.item_id}" title="{$item.item_description}">
-              <p class="my-item">{$item.item_name}</p>
+            <a class="thumbnail" href="{:U('Home/Item/Show')}?id={$item.id}" title="{$item.description}">
+              <p class="my-item">{$item.name}</p>
             </a>
           </li>     
         </foreach>
