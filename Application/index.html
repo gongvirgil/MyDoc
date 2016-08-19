@@ -1,0 +1,424 @@
+<link rel="stylesheet" type="text/css" href="/Public/css/jscal/jscal2.css" />
+<link rel="stylesheet" type="text/css" href="/Public/css/jscal/border-radius.css" />
+<link rel="stylesheet" type="text/css" href="/Public/css/jscal/gold/gold.css" />
+<script type="text/javascript" src="/Public/js/jscal/jscal2.js"></script>
+<script type="text/javascript" src="/Public/js/jscal/unicode-letter.js"></script>
+<script type="text/javascript" src="/Public/js/jscal/zh-cn.js"></script>
+<script type="text/javascript" src="/Public/js/moudle/contact/modifyMember.js"></script>
+<div class="tit title-style1"><span><a href="#" id="btnSaveUser"><img src="/Public/images/icon_ok.gif" width="40" height="40" alt="保存"/></a></span><span><a href="#" id="btnCancel"><img src="/Public/images/icon_cancel.gif" alt="取消"/></a></span></div>
+<div class="useredit">
+    <input type="hidden" id="isPerson" value="0" />
+    <form id="memberModifyForm" method="post" action="/Talk/Contact/modifyMember">
+        <input type="hidden" name="uid" id="form_uid" value="236" />
+        <input type="hidden" name="gid" id="form_gid" value="" />
+        <input type="hidden" name="maxCp" id="form_maxCp" value="0" />
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td colspan=3>
+                    <div id="errorList" style="padding-left:60px;padding-bottom:20px"></div>
+                </td>
+                <td width="18">&nbsp;</td>
+            </tr>
+            <tr>
+                <td width="120">
+                    <div align="right">姓名:</div>
+                </td>
+                <td width="5">&nbsp;</td>
+                <td width="170">
+                    <input class="textfield2 input1" name="displayname" id="form_displayname" type="text" value="名字GQ346" />
+                </td>
+                <td width="5" class="cRed"></td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">分机号码:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <table width="100%%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="70%">
+                                <input class="textfield2 input2" name="number" id="form_number" type="text" style="width:110px;" value="5346" />
+                            </td>
+                            <td width="30%">
+                                <!-- <input class="sendbt2" type="button" id="randomNumberBtn" value="随机" /> -->
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td><span class="cRed"></span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">密码:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <input class="textfield2 input1" name="password" id="form_password" type="password" value="123abc" />
+                </td>
+                <td><span class="cRed"></span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">确认密码:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <input class="textfield2 input1" name="confirm_pwd" id="form_confirm_pwd" type="password" value="123abc" />
+                </td>
+                <td><span class="cRed"></span></td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">职务:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <input class="textfield2 input1" name="duty" id="form_duty" type="text" value="" />
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">直拨号码:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <select name="paid" id="form_paid">
+                        <option value="-1">无</option>
+                    </select>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">有效期起始时间:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <table width="100%%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="80%">
+                                <input class="textfield2 input3" name="timebegin" id="form_timebegin" type="text" style="width:125px;" value="2016-08-11 15:35:00" />
+                            </td>
+                            <td width="20%"><img src="/Public/images/icon_date.png" width="23" height="19" id="form_startdate_trigger" alt="点击选择时间" /></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">有效期终止时间:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <table width="100%%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="80%">
+                                <input class="textfield2 input3" name="timeend" id="form_timeend" type="text" style="width:125px;" value="2016-08-18 15:35:00" />
+                            </td>
+                            <td width="20%"><img src="/Public/images/icon_date.png" width="23" height="19" id="form_enddate_trigger" alt="点击选择时间" /></td>
+                        </tr>
+                    </table>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">手机号码:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <input class="textfield2 input1" name="mobile" id="form_mobile" type="text" value="15561669346" />
+                    <input type="checkbox" id="form_hide_fields" name="hide_fields[]" value="mobile" />
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">电子邮箱:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <input class="textfield2 input1" name="email" id="form_email" type="text" value="23rewr534@qq.com" />
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">电话:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <input class="textfield2 input1" name="telephone" id="form_telephone" type="text" value="" />
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">地址:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <input class="textfield2 input1" name="address" id="form_address" type="text" value="&quot; onclick=&quot;alert(11)&quot;" />
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">外呼限制:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <select name="permission" id="form_permission">
+                        <option value="0" selected>内线</option>
+                        <option value="1">外线本地</option>
+                        <option value="2">外线国内</option>
+                        <option value="3">外线国际</option>
+                    </select>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">外呼方式:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <select name="callintype" id="form_callintype">
+                        <option value="1">电话直拨</option>
+                        <option value="4" selected>总机回拨</option>
+                        <option value="2">网络通话</option>
+                    </select>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">外线时间:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <input name="call_limit" id="form_call_limit_no" type="radio" value="0" checked />无限制
+                    <input name="call_limit" id="form_call_limit_yes" type="radio" value="1" /> 固定时间
+                    <div style="max-height:200px;"> 开始时间：
+                        <select name="callLimitSt_hour" id="form_callLimitSt_hour">
+                            <option value="00">00</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08" selected>08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                        </select> ：
+                        <select name="callLimitSt_min" id="form_callLimitSt_min">
+                            <option value="00" selected>00</option>
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                            <option value="32">32</option>
+                            <option value="33">33</option>
+                            <option value="34">34</option>
+                            <option value="35">35</option>
+                            <option value="36">36</option>
+                            <option value="37">37</option>
+                            <option value="38">38</option>
+                            <option value="39">39</option>
+                            <option value="40">40</option>
+                            <option value="41">41</option>
+                            <option value="42">42</option>
+                            <option value="43">43</option>
+                            <option value="44">44</option>
+                            <option value="45">45</option>
+                            <option value="46">46</option>
+                            <option value="47">47</option>
+                            <option value="48">48</option>
+                            <option value="49">49</option>
+                            <option value="50">50</option>
+                            <option value="51">51</option>
+                            <option value="52">52</option>
+                            <option value="53">53</option>
+                            <option value="54">54</option>
+                            <option value="55">55</option>
+                            <option value="56">56</option>
+                            <option value="57">57</option>
+                            <option value="58">58</option>
+                            <option value="59">59</option>
+                        </select>
+                        <div style="max-height:200px;"> 结束时间：
+                            <select name="callLimitEt_hour" id="form_callLimitEt_hour">
+                                <option value="00">00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18" selected>18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                            </select> ：
+                            <select name="callLimitEt_min" id="form_callLimitEt_min">
+                                <option value="00" selected>00</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                                <option value="51">51</option>
+                                <option value="52">52</option>
+                                <option value="53">53</option>
+                                <option value="54">54</option>
+                                <option value="55">55</option>
+                                <option value="56">56</option>
+                                <option value="57">57</option>
+                                <option value="58">58</option>
+                                <option value="59">59</option>
+                            </select>
+                        </div>
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">外线分钟:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>
+                    <input name="time_limit" id="form_time_limit_no" type="radio" value="0" checked/> 无限制
+                    <input name="time_limit" id="form_time_limit_yes" type="radio" value="1" />
+                    <input name="time_limit_min" id="form_time_limit_min" type="text" value="0" style="width:30px;" />分钟/月
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">是否管理员:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td> 是
+                    <input name="type" id="form_type_yes" type="radio" value="1" /> 否
+                    <input name="type" id="form_type_no" type="radio" value="0" checked />
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="right">电话会议权限:</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>开放
+                    <input name="allow_invite_meeting" id="form_allow_invite_meeting_yes" type="radio" value="1" checked /> 关闭
+                    <input name="allow_invite_meeting" id="form_allow_invite_meeting_no" type="radio" value="0" />
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+        <input type="hidden" name="__hash__" value="16b5472c92a570c645391a17e35a7431_66d03e1caefdad42d44cda9123d12469" />
+    </form>
+    </div>

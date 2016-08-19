@@ -3,9 +3,6 @@ class File {
 	public function formatDir($dir){
 		return substr($dir, -1)=="/"?$dir:($dir."/");
 	}
-	public function duplicateFile(){
-		
-	}
 	/**
 	 * [createDir 创建目录]
 	 * @param  [type]  $dir  [description]

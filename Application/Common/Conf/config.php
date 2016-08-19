@@ -22,5 +22,5 @@ return array(
 	'USER_AUTH_VERIFY_CODE' => 'verify',
 
 	//模板
-	'Template_path' => './Public/Template/',
+	'Template_path' => './Public/Templates/AdminLTE/html/',
 );
