@@ -12,7 +12,7 @@ class File {
 	public function createDir($dir, $mode = 0777){
 	    if (is_dir($dir) || (@mkdir($dir, $mode) && @chmod($dir, $mode)) )
 	        return true;
-	    if (!createDir(dirname($dir), $mode))
+	    if (!$this->createDir(dirname($dir), $mode))
 	        return false;
 	    return (@mkdir($dir, $mode) && @chmod($dir, $mode));
 	}
