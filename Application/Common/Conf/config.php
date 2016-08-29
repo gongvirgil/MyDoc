@@ -14,9 +14,11 @@ return array(
 	'DB_DEBUG'   => true,
 
     //允许访问的模块列表
-	'MODULE_ALLOW_LIST' => array('Api','Auth','Doc','Admin','File'),
-	'DEFAULT_MODULE'    => 'Api', // 默认模块
+	'MODULE_ALLOW_LIST' => array('Admin','Api','Auth','Doc','File'),
+	'DEFAULT_MODULE'    => 'Admin', // 默认模块
 	
+	'URL_MODEL' => 2,
+
 	//登录SESSION
 	'USER_AUTH_KEY'         => 'login_user',
 	'USER_AUTH_VERIFY_CODE' => 'verify',
