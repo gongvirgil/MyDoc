@@ -1,0 +1,236 @@
+<extend name="Public/Templates/AdminLTE/html/base.html" />
+<block name="title">AdminLTE 2 | Media Gallery</block>
+<block name="css-files">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="__PUBLIC__/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="__PUBLIC__/plugins/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="__PUBLIC__/plugins/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- blueimp-gallery -->
+    <link rel="stylesheet" href="__PUBLIC__/plugins/blueimp-gallery/css/blueimp-gallery.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="__PUBLIC__/Templates/AdminLTE/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="__PUBLIC__/Templates/AdminLTE/css/skins/_all-skins.min.css">
+</block>
+<block name="main-sidebar">
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+          <!-- Sidebar user panel -->
+          <div class="user-panel">
+            <div class="pull-left image">
+              <img src="__PUBLIC__/Templates/AdminLTE/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+              <p>Alexander Pierce</p>
+              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+          </div>
+          <!-- search form -->
+          <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+              <input type="text" name="q" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+              </span>
+            </div>
+          </form>
+          <!-- /.search form -->
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+          <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li class="active treeview">
+              <a href="#">
+                <i class="fa fa-dashboard"></i> <span>Admin</span> <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{:U('Admin/Index/index')}"><i class="fa fa-circle-o"></i> Dashboard </a></li>
+                <li class="active"><a href="{:U('Admin/User/index')}"><i class="fa fa-circle-o"></i> User Manage </a></li>
+                <li><a href="{:U('Admin/User/profile')}"><i class="fa fa-circle-o"></i> User Profile </a></li>
+              </ul>
+            </li>
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-files-o"></i>
+                <span>File</span>
+                <span class="label label-primary pull-right">4</span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{:U('File/Index/index')}"><i class="fa fa-circle-o"></i> File Folder </a></li>
+                <li><a href="{:U('File/Video/index')}"><i class="fa fa-circle-o"></i> Video </a></li>
+                <li><a href="{:U('File/Music/index')}"><i class="fa fa-circle-o"></i> Music </a></li>
+                <li><a href="{:U('File/Image/index')}"><i class="fa fa-circle-o"></i> Image </a></li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <!-- /.sidebar -->
+      </aside>
+</block>
+<block name="content-wrapper">
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Media Gallery
+        <small>gallery</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Media</a></li>
+        <li class="active">Gallery</li>
+      </ol>
+    </section>
+
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                  <li class="active"><a href="#Image" data-toggle="tab">Image</a></li>
+                  <li><a href="#Audio" data-toggle="tab">Audio</a></li>
+                  <li><a href="#Video" data-toggle="tab">Video</a></li>
+                </ul>
+                <div class="tab-content">
+                  <div class="active tab-pane" id="Image">
+                    <div class="row">
+                      <!-- The container for the list of example images -->
+                      <div class="col-sm-4 col-md-2">
+                        <a data-gallery="" href="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg" title="Living on the edge"><img class="img-thumbnail" width="200" src="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg"></a>
+                      </div>
+                      <div class="col-sm-4 col-md-2">
+                        <a data-gallery="" href="__PUBLIC__/Templates/AdminLTE/img/gallery/2.jpg" title="Living on the edge"><img class="img-thumbnail" width="200" src="__PUBLIC__/Templates/AdminLTE/img/gallery/2.jpg"></a>
+                      </div>
+                      <div class="col-sm-4 col-md-2">
+                        <a data-gallery="" href="__PUBLIC__/Templates/AdminLTE/img/gallery/3.jpg" title="Living on the edge"><img class="img-thumbnail" width="200" src="__PUBLIC__/Templates/AdminLTE/img/gallery/3.jpg"></a>
+                      </div>
+                      <div class="col-sm-4 col-md-2">
+                        <a data-gallery="" href="__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4" title="Sintel" type="video/mp4" data-poster="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg" data-sources='[{"href": "__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4", "type": "video/mp4"}]'><video class="img-thumbnail" width="200" src="__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4" poster="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg" controls=""></video></a>
+                      </div>
+                      <div class="col-sm-4 col-md-2">
+                        <a data-gallery="" href="__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4" title="Sintel" type="video/mp4" data-poster="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg" data-sources='[{"href": "__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4", "type": "video/mp4"}]'><video class="img-thumbnail" width="200" src="__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4" poster="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg" controls=""></video></a>
+                      </div>
+                      <div class="col-sm-4 col-md-2">
+                        <form action="{:U('File/Upload/image')}" method="post" role="form" enctype="multipart/form-data" id="uploadForm" class="form-horizontal">
+                          <input type="file" accept="image/*" name="file">
+                          <input type="submit" value="确定" id="uploadBtn" class="btn btn-primary">
+                        </form>
+                        <div class="progress">
+                            <div class="bar"></div>
+                            <div class="percent">0%</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- /.tab-pane -->
+                  <div class="tab-pane" id="Audio">
+                  </div><!-- /.tab-pane -->
+
+                  <div class="tab-pane" id="Video">
+                  </div><!-- /.tab-pane -->
+                </div><!-- /.tab-content -->
+              </div><!-- /.nav-tabs-custom -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+        </section><!-- /.content -->
+
+  </div><!-- /.content-wrapper -->
+
+  <style>
+    .progress { position:relative; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }
+    .bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }
+    .percent { position:absolute; display:inline-block; top:3px; left:48%; }
+  </style>
+
+  <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+  <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+      <!-- The container for the modal slides -->
+      <div class="slides"></div>
+      <!-- Controls for the borderless lightbox -->
+      <h3 class="title"></h3>
+      <a class="prev">‹</a>
+      <a class="next">›</a>
+      <a class="close">×</a>
+      <a class="play-pause"></a>
+      <ol class="indicator"></ol>
+      <!-- The modal dialog, which will be used to wrap the lightbox content -->
+      <div class="modal fade">
+          <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title"></h4>
+                  </div>
+                  <div class="modal-body next"></div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default pull-left prev">
+                          <i class="glyphicon glyphicon-chevron-left"></i>
+                          Previous
+                      </button>
+                      <button type="button" class="btn btn-primary next">
+                          Next
+                          <i class="glyphicon glyphicon-chevron-right"></i>
+                      </button>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</block>
+
+<block name="js-files">
+    <!-- jQuery 2.1.4 -->
+    <script src="__PUBLIC__/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="__PUBLIC__/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- blueimp-gallery 2.21.3 -->
+    <script src="__PUBLIC__/plugins/blueimp-gallery/js/jquery.blueimp-gallery.min.js"></script>
+    <!-- jQuery-form 3.51.0 -->
+    <script src="__PUBLIC__/plugins/jQuery.form/js/jquery.form.min.js"></script>
+    <!-- jQuery-layer 2.4 -->
+    <script src="__PUBLIC__/plugins/jQuery.layer/layer/layer.js"></script>
+    <!-- FastClick -->
+    <script src="__PUBLIC__/plugins/fastclick/fastclick.min.js"></script>
+    <!-- Virgil -->
+    <script src="__PUBLIC__/plugins/virgil/js/virgil.js"></script>
+    <!-- AdminLTE App -->
+    <script src="__PUBLIC__/Templates/AdminLTE/js/app.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="__PUBLIC__/Templates/AdminLTE/js/demo.js"></script>
+    <!-- page script -->
+    <script>
+    $(function () {
+      $('#blueimp-gallery').data('useBootstrapModal', false);
+      var bar = $('.bar');
+      var percent = $('.percent');
+      $('#uploadForm').ajaxForm({
+          beforeSend: function() {
+              var percentVal = '0%';
+              bar.width(percentVal);
+              percent.html(percentVal);
+          },
+          uploadProgress: function(event, position, total, percentComplete) {
+              var percentVal = percentComplete + '%';
+              bar.width(percentVal)
+              percent.html(percentVal);
+          },
+          success: function(retJson) {
+              var percentVal = '100%';
+              bar.width(percentVal)
+              percent.html(percentVal);
+              layer.msg(retJson.info);
+          },
+          complete: function(xhr) {
+
+          }
+      }); 
+
+    })
+    </script>
+</block>
