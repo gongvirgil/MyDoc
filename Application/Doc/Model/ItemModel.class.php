@@ -73,7 +73,7 @@ class ItemModel extends BaseModel {
 	public function getListByUid($uid){
 		if(empty($uid))	return false;
 		$map['uid'] = $uid;
-		$list = $this->where($uid)->select();
+		$list = $this->where($map)->select();
 		if(!$list)	return false;
 		return $list;
 	}

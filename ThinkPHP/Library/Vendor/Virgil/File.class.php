@@ -179,4 +179,42 @@ class File {
 		unlink($from_path);
 		return true;
 	}
+	/**
+	 * [sendFile 输出文件]
+	 * @param  [type]  $file        [description]
+	 * @param  string  $type        [description]
+	 * @param  integer $newNameFlag [description]
+	 * @return [type]               [description]
+	 */
+	public function sendFile($file,$type="image",$newNameFlag=0){
+		if(!file_exists($file)){
+			header("HTTP/1.1 404 Not Found");
+		}else{
+			$file_size = filesize($file);
+			$file_name = basename($file);
+			switch ($type) {
+				case 'image':
+					$image_type = exif_imagetype($file);
+					$mime_type  = image_type_to_mime_type($image_type);
+					header('content-type:'.$mime_type);
+					header('content-length:'.$file_size);
+					echo file_get_contents($file);
+					break;
+				default:
+					$file_name = $newNameFlag?"download".time():$file_name;
+					header('content-type: application/octet-tream');
+					header('Accept-Range: bytes');
+					header('Content-Transfer-Encoding:binary');
+					header('Accept-Length: '.$file_size);
+					header('content-length: '.$file_size);
+					header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+					header('Pragma: public');
+					header('Content-Disposition: attachment;filename='.$file_name);
+					$f = fopen($file,"r");
+					echo fread($f,$file_size);
+					fclose($f);
+					break;
+			}
+		}
+	}
 }

@@ -99,23 +99,17 @@
                 </ul>
                 <div class="tab-content">
                   <div class="active tab-pane" id="Image">
+                    
+                    <div class="row">
+                      <volist name="list" id="vo" mod="6">
+                        <a data-gallery="" href="{$vo.url}" title="Living on the edge"><img class="img-thumbnail" style="height:200px;" src="{$vo.url}"></a>
+                      </volist>
+                      <!-- <a data-gallery="" href="__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4" title="Sintel" type="video/mp4" data-poster="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg" data-sources='[{"href": "__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4", "type": "video/mp4"}]'><video class="img-thumbnail" style="height:200px;" src="__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4" poster="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg" controls=""></video></a>
+                      <a data-gallery="" href="__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4" title="Sintel" type="video/mp4" data-poster="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg" data-sources='[{"href": "__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4", "type": "video/mp4"}]'><video class="img-thumbnail" style="height:200px;" src="__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4" poster="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg" controls=""></video></a> -->
+                    </div>
+                    
                     <div class="row">
                       <!-- The container for the list of example images -->
-                      <div class="col-sm-4 col-md-2">
-                        <a data-gallery="" href="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg" title="Living on the edge"><img class="img-thumbnail" width="200" src="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg"></a>
-                      </div>
-                      <div class="col-sm-4 col-md-2">
-                        <a data-gallery="" href="__PUBLIC__/Templates/AdminLTE/img/gallery/2.jpg" title="Living on the edge"><img class="img-thumbnail" width="200" src="__PUBLIC__/Templates/AdminLTE/img/gallery/2.jpg"></a>
-                      </div>
-                      <div class="col-sm-4 col-md-2">
-                        <a data-gallery="" href="__PUBLIC__/Templates/AdminLTE/img/gallery/3.jpg" title="Living on the edge"><img class="img-thumbnail" width="200" src="__PUBLIC__/Templates/AdminLTE/img/gallery/3.jpg"></a>
-                      </div>
-                      <div class="col-sm-4 col-md-2">
-                        <a data-gallery="" href="__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4" title="Sintel" type="video/mp4" data-poster="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg" data-sources='[{"href": "__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4", "type": "video/mp4"}]'><video class="img-thumbnail" width="200" src="__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4" poster="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg" controls=""></video></a>
-                      </div>
-                      <div class="col-sm-4 col-md-2">
-                        <a data-gallery="" href="__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4" title="Sintel" type="video/mp4" data-poster="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg" data-sources='[{"href": "__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4", "type": "video/mp4"}]'><video class="img-thumbnail" width="200" src="__PUBLIC__/Templates/AdminLTE/img/gallery/1.mp4" poster="__PUBLIC__/Templates/AdminLTE/img/gallery/1.jpg" controls=""></video></a>
-                      </div>
                       <div class="col-sm-4 col-md-2">
                         <form action="{:U('File/Upload/image')}" method="post" role="form" enctype="multipart/form-data" id="uploadForm" class="form-horizontal">
                           <input type="file" accept="image/*" name="file">
@@ -225,6 +219,7 @@
               bar.width(percentVal)
               percent.html(percentVal);
               layer.msg(retJson.info);
+              window.location.reload();
           },
           complete: function(xhr) {
 

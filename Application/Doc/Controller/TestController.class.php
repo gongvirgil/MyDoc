@@ -6,9 +6,11 @@ class TestController extends Controller {
 
 
 	public function a(){
-		import("Vendor.Virgil.Doc");
-        $Doc = new \Doc();
-        $Doc->buildDoc();
+		set_time_limit(0);
+		import("Vendor.Virgil.TTS");
+        $TTS = new \TTS();
+        $res = $TTS->create("你是我的小呀小苹果");
+        var_dump($res);
 	}
 	public function b(){
 
