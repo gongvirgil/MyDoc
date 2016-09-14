@@ -9,7 +9,9 @@ class AccountController extends Controller {
 	public function test(){
         import("Vendor.Virgil.Mail");
     	$mail = new \Mail();
-    	$res = $mail->sendMail("gongqiang@emicnet.com",'用户','测试一下哟','<p>你好，我是一个测试的东西</p>');
+    	$template = file_get_contents('./Public/Templates/MailTemplate/1.html');
+    	//exit($template);
+    	$res = $mail->sendMail("ppmoli@126.com",'用户','测试一下哟',$template);
     	var_dump($res);
 	}
 }
