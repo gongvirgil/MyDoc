@@ -13,7 +13,10 @@ class TestController extends Controller {
         var_dump($res);
 	}
 	public function b(){
-
+		import("Vendor.Virgil.Image1");
+        $Image = new \Image1('./Public/img/pic1.jpg');
+        var_dump($Image-> imageInfo);exit();
+        $Image->show();
 	}
 
 }

@@ -16,7 +16,7 @@ class UserController extends AuthController {
 		$p = ceil($start/$length)+1;
 		$row = $length;
 		$searchStr = $search['value'];
-		$orderBy = $columns[$order[0]['column']]['data']." ".$order[0]['dir'];
+		if(!empty($order) && is_array($order)) $orderBy = $columns[$order[0]['column']]['data']." ".$order[0]['dir'];
 		
 		$data = D('User')->userList($p,$row,$searchStr,$orderBy,"*");
 		$this->ajaxReturn($data,'JSON');

@@ -7,7 +7,7 @@ return array(
 	'DB_HOST'    => 'localhost',
 	'DB_NAME'    => 'mydoc',
 	'DB_USER'    => 'root',
-	'DB_PWD'     => 'gong1993',
+	'DB_PWD'     => '',
 	'DB_PORT'    => 3306,
 	'DB_PREFIX'  => 'mydoc_',
 	'DB_CHARSET' => 'utf8',
@@ -20,7 +20,8 @@ return array(
 	'URL_MODEL' => 2,
 
 	//登录SESSION
-	'USER_AUTH_KEY'         => 'login_user',
+	'USER_AUTH_ON'          => true,
+	'USER_AUTH_KEY'         => 'login_user_id',
 	'USER_AUTH_VERIFY_CODE' => 'verify',
 
 	//模板
