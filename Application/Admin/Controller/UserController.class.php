@@ -22,7 +22,8 @@ class UserController extends AuthController {
 		$this->ajaxReturn($data,'JSON');
 	}
 	public function profile(){
-		$userId = empty(I('userId'))?$this->login_user['id']:I('userId');
+		$userId = I('userId');
+		if(empty($userId)) $userId = $this->login_user['id'];
 		$this->userInfo = D('User')->userInfo($userId,'id');
 		$this->display(C('Template_path').'userProfile.html');
 	}

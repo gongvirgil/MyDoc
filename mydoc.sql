@@ -10,8 +10,11 @@ Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2016-07-01 18:31:32
+Date: 2016-11-24 18:21:21
 */
+DROP DATABASE IF EXISTS `mydoc`;
+CREATE DATABASE IF NOT EXISTS `mydoc` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `mydoc`;
 
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -37,6 +40,28 @@ CREATE TABLE `mydoc_catalog` (
 INSERT INTO `mydoc_catalog` VALUES ('1', '目录A', '99', '1467356973', '0', '1');
 
 -- ----------------------------
+-- Table structure for `mydoc_image`
+-- ----------------------------
+DROP TABLE IF EXISTS `mydoc_image`;
+CREATE TABLE `mydoc_image` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hash` varchar(255) NOT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `path` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `extension` varchar(255) DEFAULT NULL,
+  `is_remote` tinyint(2) NOT NULL DEFAULT '0',
+  `owner_uid` int(11) NOT NULL DEFAULT '0',
+  `create_time` int(11) NOT NULL,
+  `modify_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mydoc_image
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for `mydoc_item`
 -- ----------------------------
 DROP TABLE IF EXISTS `mydoc_item`;
@@ -56,7 +81,6 @@ CREATE TABLE `mydoc_item` (
 -- ----------------------------
 -- Records of mydoc_item
 -- ----------------------------
-INSERT INTO `mydoc_item` VALUES ('1', '项目A', '1111', '1', 'admin', '', '1467356953', '1467358641');
 
 -- ----------------------------
 -- Table structure for `mydoc_item_member`
@@ -74,7 +98,26 @@ CREATE TABLE `mydoc_item_member` (
 -- ----------------------------
 -- Records of mydoc_item_member
 -- ----------------------------
-INSERT INTO `mydoc_item_member` VALUES ('1', '5', '1', 'showdoc', '1451456827');
+
+-- ----------------------------
+-- Table structure for `mydoc_node`
+-- ----------------------------
+DROP TABLE IF EXISTS `mydoc_node`;
+CREATE TABLE `mydoc_node` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(25) NOT NULL DEFAULT '',
+  `title` varchar(255) NOT NULL DEFAULT '',
+  `status` tinyint(1) NOT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `pid` int(11) NOT NULL DEFAULT '0',
+  `level` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mydoc_node
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `mydoc_page`
@@ -99,9 +142,46 @@ CREATE TABLE `mydoc_page` (
 -- ----------------------------
 -- Records of mydoc_page
 -- ----------------------------
-INSERT INTO `mydoc_page` VALUES ('1', 'aa', '99', '\n    \n**简要描述：** \n\n- 用户注册接口\n\n**请求URL：** \n- ` http://xx.com/api/user/register `\n  \n**请求方式：**\n- POST \n\n**参数：** \n\n|参数名|必选|类型|说明|\n|:----    |:---|:----- |-----   |\n|username |是  |string |用户名   |\n|password |是  |string | 密码    |\n|name     |否  |string | 昵称    |\n\n **返回示例**\n\n``` \n  {\n    &quot;error_code&quot;: 0,\n    &quot;data&quot;: {\n      &quot;uid&quot;: &quot;1&quot;,\n      &quot;username&quot;: &quot;12154545&quot;,\n      &quot;name&quot;: &quot;吴系挂&quot;,\n      &quot;groupid&quot;: 2 ,\n      &quot;reg_time&quot;: &quot;1436864169&quot;,\n      &quot;last_login_time&quot;: &quot;0&quot;,\n    }\n  }\n```\n\n **返回参数说明** \n\n|参数名|类型|说明|\n|:-----  |:-----|-----                           |\n|groupid |int   |用户组id，1：超级管理员；2：普通用户  |\n\n **备注** \n\n- 更多返回错误代码请看首页的错误代码描述\n\n\n', '1467357342', '0', '1', 'admin', '1', '1');
-INSERT INTO `mydoc_page` VALUES ('2', 'page1', '99', '\n    \n**简要描述：** \n\n- 用户注册接口\n\n**请求URL：** \n- ` http://xx.com/api/user/register `\n  \n**请求方式：**\n- POST \n\n**参数：** \n\n|参数名|必选|类型|说明|\n|:----    |:---|:----- |-----   |\n|username |是  |string |用户名   |\n|password |是  |string | 密码    |\n|name     |否  |string | 昵称    |\n\n **返回示例**\n\n``` \n  {\n    &quot;error_code&quot;: 0,\n    &quot;data&quot;: {\n      &quot;uid&quot;: &quot;1&quot;,\n      &quot;username&quot;: &quot;12154545&quot;,\n      &quot;name&quot;: &quot;吴系挂&quot;,\n      &quot;groupid&quot;: 2 ,\n      &quot;reg_time&quot;: &quot;1436864169&quot;,\n      &quot;last_login_time&quot;: &quot;0&quot;,\n    }\n  }\n```\n\n **返回参数说明** \n\n|参数名|类型|说明|\n|:-----  |:-----|-----                           |\n|groupid |int   |用户组id，1：超级管理员；2：普通用户  |\n\n **备注** \n\n- 更多返回错误代码请看首页的错误代码描述\n\n\n', '1467358114', '0', '1', 'admin', '1', '0');
-INSERT INTO `mydoc_page` VALUES ('3', 'page2', '99', '###nihao\n* &amp;*&amp;*', '1467358641', '0', '1', 'admin', '1', '0');
+
+-- ----------------------------
+-- Table structure for `mydoc_project`
+-- ----------------------------
+DROP TABLE IF EXISTS `mydoc_project`;
+CREATE TABLE `mydoc_project` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `description` varchar(2048) DEFAULT '',
+  `owner_uid` int(11) NOT NULL DEFAULT '0',
+  `manager_uids` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mydoc_project
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `mydoc_role`
+-- ----------------------------
+DROP TABLE IF EXISTS `mydoc_role`;
+CREATE TABLE `mydoc_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  `level` int(11) NOT NULL DEFAULT '0',
+  `remark` varchar(255) DEFAULT NULL,
+  `color` varchar(25) NOT NULL DEFAULT '#000000',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mydoc_role
+-- ----------------------------
+INSERT INTO `mydoc_role` VALUES ('1', '游客', '0', null, '#000000');
+INSERT INTO `mydoc_role` VALUES ('2', '普通用户', '1', null, '#000000');
+INSERT INTO `mydoc_role` VALUES ('3', 'VIP用户', '1', null, '#000000');
+INSERT INTO `mydoc_role` VALUES ('4', '管理员', '2', null, '#000000');
+INSERT INTO `mydoc_role` VALUES ('5', '超级管理员', '3', null, '#000000');
+INSERT INTO `mydoc_role` VALUES ('6', '系统管理员', '100', null, '#000000');
 
 -- ----------------------------
 -- Table structure for `mydoc_user`
@@ -109,24 +189,26 @@ INSERT INTO `mydoc_page` VALUES ('3', 'page2', '99', '###nihao\n* &amp;*&amp;*',
 DROP TABLE IF EXISTS `mydoc_user`;
 CREATE TABLE `mydoc_user` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `group_id` int(2) NOT NULL DEFAULT '0',
-  `username` varchar(50) NOT NULL,
-  `nickname` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL COMMENT '邮箱',
+  `username` varchar(50) DEFAULT NULL COMMENT '账号',
+  `realname` varchar(50) DEFAULT NULL COMMENT '真实名称',
   `password` varchar(50) NOT NULL,
   `salt` varchar(6) NOT NULL DEFAULT 'abcdef',
   `avatar` varchar(255) NOT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `sex` int(2) NOT NULL DEFAULT '0',
+  `sex` int(2) NOT NULL DEFAULT '0' COMMENT '0: male; 1: female;',
   `reg_time` int(11) NOT NULL,
   `last_login_time` int(11) DEFAULT NULL,
   `reg_ip` varchar(15) DEFAULT NULL,
   `last_login_ip` varchar(15) DEFAULT NULL,
   `login_error_count` int(2) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `group_id` int(2) NOT NULL DEFAULT '0',
+  `role_id` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`,`email`),
+  UNIQUE KEY `email` (`email`) USING BTREE,
+  KEY `username` (`username`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mydoc_user
 -- ----------------------------
-INSERT INTO `mydoc_user` VALUES ('1', '0', 'admin', '', '6554bb7556f1e2257d88f0afc100a3af', 'XjneAk', '', null, '0', '1467356901', '1467356935', '0.0.0.0', '0.0.0.0', '0');
+INSERT INTO `mydoc_user` VALUES ('1', 'ppmoli@qq.com', 'admin', 'admin', '6554bb7556f1e2257d88f0afc100a3af', 'XjneAk', '', '0', '1467356901', '1471852227', '0.0.0.0', '127.0.0.1', '0', '0', '0');

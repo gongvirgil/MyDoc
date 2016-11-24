@@ -13,62 +13,6 @@
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="__PUBLIC__/Templates/AdminLTE/css/skins/_all-skins.min.css">
 </block>
-<block name="main-sidebar">
-	<!-- Left side column. contains the logo and sidebar -->
-	<aside class="main-sidebar">
-		<!-- sidebar: style can be found in sidebar.less -->
-		<section class="sidebar">
-		  <!-- Sidebar user panel -->
-		  <div class="user-panel">
-		    <div class="pull-left image">
-		      <img src="__PUBLIC__/Templates/AdminLTE/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-		    </div>
-		    <div class="pull-left info">
-		      <p>Alexander Pierce</p>
-		      <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-		    </div>
-		  </div>
-		  <!-- search form -->
-		  <form action="#" method="get" class="sidebar-form">
-		    <div class="input-group">
-		      <input type="text" name="q" class="form-control" placeholder="Search...">
-		      <span class="input-group-btn">
-		        <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-		      </span>
-		    </div>
-		  </form>
-		  <!-- /.search form -->
-		  <!-- sidebar menu: : style can be found in sidebar.less -->
-		  <ul class="sidebar-menu">
-            <li class="header">MAIN NAVIGATION</li>
-            <li class="active treeview">
-              <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Admin</span> <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{:U('Admin/Index/index')}"><i class="fa fa-circle-o"></i> Dashboard </a></li>
-                <li><a href="{:U('Admin/User/index')}"><i class="fa fa-circle-o"></i> User Manage </a></li>
-                <li class="active"><a href="{:U('Admin/User/profile')}"><i class="fa fa-circle-o"></i> User Profile </a></li>
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-files-o"></i>
-                <span>File</span>
-                <span class="label label-primary pull-right">4</span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{:U('File/Index/index')}"><i class="fa fa-circle-o"></i> File Folder </a></li>
-                <li><a href="{:U('File/Video/index')}"><i class="fa fa-circle-o"></i> Video </a></li>
-                <li><a href="{:U('File/Music/index')}"><i class="fa fa-circle-o"></i> Music </a></li>
-                <li><a href="{:U('File/Image/index')}"><i class="fa fa-circle-o"></i> Image </a></li>
-              </ul>
-            </li>
-		  </ul>
-		</section>
-		<!-- /.sidebar -->
-	</aside>
-</block>
 <block name="content-wrapper">
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -94,7 +38,7 @@
               <div class="box box-primary">
                 <div class="box-body box-profile">
                   <img class="profile-user-img img-responsive img-circle" src="__PUBLIC__/Templates/AdminLTE/img/user4-128x128.jpg" alt="User profile picture">
-                  <h3 class="profile-username text-center">Nina Mcintire</h3>
+                  <h3 class="profile-username text-center">{$userInfo.username}</h3>
                   <p class="text-muted text-center">Software Engineer</p>
 
                   <ul class="list-group list-group-unbordered">

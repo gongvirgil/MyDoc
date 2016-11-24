@@ -7,7 +7,7 @@ return array(
 	'DB_HOST'    => 'localhost',
 	'DB_NAME'    => 'mydoc',
 	'DB_USER'    => 'root',
-	'DB_PWD'     => '',
+	'DB_PWD'     => '123456',
 	'DB_PORT'    => 3306,
 	'DB_PREFIX'  => 'mydoc_',
 	'DB_CHARSET' => 'utf8',
@@ -18,6 +18,7 @@ return array(
 	'DEFAULT_MODULE'    => 'Admin', // 默认模块
 	
 	'URL_MODEL' => 2,
+	'URL_CASE_INSENSITIVE' => true,//不区分大小写
 
 	//登录SESSION
 	'USER_AUTH_ON'          => true,

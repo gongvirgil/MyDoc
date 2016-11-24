@@ -14,5 +14,8 @@ class AuthController extends Controller {
 		\Rbac::checkLogin();
 		$map['id'] = $_SESSION[C('USER_AUTH_KEY')];
 		$this->login_user = D('User')->where($map)->find();
+		$this->module     = MODULE_NAME;
+		$this->controller = CONTROLLER_NAME;
+		$this->action     = ACTION_NAME;
 	}
 }

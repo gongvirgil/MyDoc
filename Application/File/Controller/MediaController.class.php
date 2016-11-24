@@ -9,4 +9,7 @@ class MediaController extends AuthController {
     public function audio(){
 		$this->display(C('Template_path').'audio.html');
     }
+    public function video(){
+		$this->display(C('Template_path').'video.html');	
+    }
 }
