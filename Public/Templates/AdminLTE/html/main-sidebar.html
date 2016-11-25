@@ -25,12 +25,12 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>
-      <li <if condition="$module eq 'File' AND $controller eq 'Index' AND $action eq 'index'">class="active treeview"<else />class="treeview"</if>>
+      <li <if condition="$module eq 'Admin'">class="active treeview"<else />class="treeview"</if>>
         <a href="#">
           <i class="fa fa-dashboard"></i> <span>Admin</span> <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-          <li <if condition="$module eq 'Admin'">class="active"</if>><a href="{:U('Admin/Index/index')}"><i class="fa fa-circle-o"></i> Dashboard </a></li>
+          <li <if condition="$module eq 'Admin' AND $controller eq 'Index' AND $action eq 'index'">class="active"</if>><a href="{:U('Admin/Index/index')}"><i class="fa fa-circle-o"></i> Dashboard </a></li>
           <li <if condition="$module eq 'Admin' AND $controller eq 'User' AND $action eq 'index'">class="active"</if>><a href="{:U('Admin/User/index')}"><i class="fa fa-circle-o"></i> User Manage </a></li>
           <li <if condition="$module eq 'Admin' AND $controller eq 'User' AND $action eq 'profile'">class="active"</if>><a href="{:U('Admin/User/profile')}"><i class="fa fa-circle-o"></i> User Profile </a></li>
         </ul>
@@ -46,6 +46,17 @@
           <li <if condition="$module eq 'File' AND $controller eq 'Media' AND $action eq 'video'">class="active"</if>><a href="{:U('File/Media/video')}"><i class="fa fa-circle-o"></i> Video </a></li>
           <li <if condition="$module eq 'File' AND $controller eq 'Media' AND $action eq 'audio'">class="active"</if>><a href="{:U('File/Media/audio')}"><i class="fa fa-circle-o"></i> Audio </a></li>
           <li <if condition="$module eq 'File' AND $controller eq 'Media' AND $action eq 'gallery'">class="active"</if>><a href="{:U('File/Media/gallery')}"><i class="fa fa-circle-o"></i> Gallery </a></li>
+        </ul>
+      </li>
+      <li <if condition="$module eq 'Mail'">class="active treeview"<else />class="treeview"</if>>
+        <a href="#">
+          <i class="fa fa-files-o"></i>
+          <span>Mail</span>
+          <span class="label label-primary pull-right">4</span>
+        </a>
+        <ul class="treeview-menu">
+          <li <if condition="$module eq 'Mail' AND $controller eq 'Index' AND $action eq 'index'">class="active"</if>><a href="{:U('Mail/Inbox/index')}"><i class="fa fa-circle-o"></i> Inbox </a></li>
+          <li <if condition="$module eq 'Mail' AND $controller eq 'Media' AND $action eq 'video'">class="active"</if>><a href="{:U('Mail/Outbox/index')}"><i class="fa fa-circle-o"></i> Outbox </a></li>
         </ul>
       </li>
     </ul>

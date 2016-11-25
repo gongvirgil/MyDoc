@@ -32,7 +32,7 @@ CREATE TABLE `mydoc_catalog` (
   PRIMARY KEY (`id`),
   KEY `order` (`order`),
   KEY `addtime` (`create_time`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='目录表';
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='目录表';
 
 -- ----------------------------
 -- Records of mydoc_catalog
@@ -55,7 +55,7 @@ CREATE TABLE `mydoc_image` (
   `create_time` int(11) NOT NULL,
   `modify_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mydoc_image
@@ -76,7 +76,7 @@ CREATE TABLE `mydoc_item` (
   `update_time` int(11) NOT NULL DEFAULT '0' COMMENT '最后更新时间',
   PRIMARY KEY (`id`),
   KEY `addtime` (`create_time`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='项目表';
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='项目表';
 
 -- ----------------------------
 -- Records of mydoc_item
@@ -93,7 +93,7 @@ CREATE TABLE `mydoc_item_member` (
   `username` varchar(50) NOT NULL DEFAULT '',
   `create_time` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='项目成员表';
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='项目成员表';
 
 -- ----------------------------
 -- Records of mydoc_item_member
@@ -137,7 +137,7 @@ CREATE TABLE `mydoc_page` (
   PRIMARY KEY (`id`),
   KEY `order` (`order`),
   KEY `addtime` (`create_time`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='文章页面表';
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='文章页面表';
 
 -- ----------------------------
 -- Records of mydoc_page
@@ -206,7 +206,7 @@ CREATE TABLE `mydoc_user` (
   PRIMARY KEY (`id`,`email`),
   UNIQUE KEY `email` (`email`) USING BTREE,
   KEY `username` (`username`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mydoc_user
