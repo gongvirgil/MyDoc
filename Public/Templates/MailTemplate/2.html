@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html style="-webkit-text-size-adjust:none;">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{$email_info.title | default=""}</title>
+    <style type="text/css">
+#outlook a {
+        padding: 0;
+    }
+    
+    body {
+        width: 100% !important;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        background-color: #f6f3f0;
+    }
+    
+    html,
+    body,
+    form,
+    fieldset,
+    p,
+    div,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        -webkit-text-size-adjust: none;
+    }
+    
+    .ExternalClass,
+    .ExternalClass p,
+    .ExternalClass span,
+    .ExternalClass font,
+    .ExternalClass td,
+    .ExternalClass div {
+        line-height: 100%;
+    }
+    
+    img.mainpic {
+        width: 100%;
+        padding-bottom: 15px;
+    }
+    
+    td.social {
+        font-size: 14px;
+        color: #333333;
+        text-align: center;
+        padding: 0 20px;
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+    
+    p {
+        margin: 0.7em 0;
+    }
+    
+    a.social {
+        color: #333333;
+        text-decoration: none;
+    }
+    
+    a.digest {
+        color: #cd1e7e;
+        text-decoration: none;
+    }
+}
+@media only screen and (min-width: 441px) {
+    #bg_table {
+        background-position: 50% 0 !important;
+    }
+}
+@media only screen and (min-width: 441px) {
+    .subline {
+        font-size: 14px !important;
+        line-height: 1.3em !important;
+    }
+}
+@media only screen and (min-width: 441px) {
+    .headline {
+        font-size: 21px !important;
+        line-height: 1.3em !important;
+    }
+}
+@media only screen and (min-width: 441px) {
+    .main_content {
+        font-size: 14px !important;
+    }
+}
+@media only screen and (min-width: 441px) {
+    .main_head {
+        font-size: 14px !important;
+    }
+}
+@media only screen and (max-width: 440px) {
+    #bg_table {
+        background-position: 50% 0 !important;
+    }
+}
+@media only screen and (max-width: 441px) {
+    .main_content {
+        font-size: 30px !important;
+        line-height: 1.3em !important;
+    }
+}
+@media only screen and (max-width: 441px) {
+    .main_head {
+        font-size: 21px !important;
+        line-height: 1.3em !important;
+    }
+}
+@media only screen and (max-width: 440px) {
+    .subline {
+        font-size: 30px !important;
+        line-height: 1.3em !important;
+    }
+}
+@media only screen and (max-width: 440px) {
+    .headline {
+        font-size: 36px !important;
+        line-height: 1.3em !important;
+    }
+}
+    </style>
+</head>
+
+<body link="#cd1e7e" vlink="#cd1e7e" alink="#cd1e7e" style="line-height:140%;font-family:Helvetica, Arial, sans-serif;width:100% ;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;margin:0;padding:0;font-weight:100;letter-spacing:0.02em;color:#000000;font-size:14px;background-color:#f6f3f0;" bgcolor="#f6f3f0">
+    <table style="width:100%; padding:0; margin:0 auto;">
+        <tr>
+            <td style="text-align:left;">
+                <table id="bg_table" style="background-position:50% 0;background-repeat:no-repeat;margin:0 auto; padding:0;">
+                    <tr>
+                        <td style="max-width:660px;">
+                            <table style="max-width:660px; padding:0 0 1.2em; margin:0 auto;">
+                                <tr>
+                                    <td colspan="2">
+                                        <h1 style="color: #000000;font-weight: 100;line-height: 1.2em;padding: 0;margin: 1em 13px 0 13px;-webkit-text-size-adjust: none;" class="headline">Hi {$email_info.username | default=""},</h1>
+                                        <p class="subline" style="margin:5px 13px 0 13px;color:#333333;-webkit-text-size-adjust:none;">Click this:<a href=""></a></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

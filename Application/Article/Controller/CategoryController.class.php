@@ -1,11 +1,11 @@
 <?php
-namespace Admin\Controller;
+namespace Article\Controller;
 use Think\Controller;
 use Auth\Controller\AuthController;
-class UserController extends AuthController {
-	public function index(){
-		$this->display(C('Template_path').'userList.html');
-	}
+class CategoryController extends AuthController {
+    public function index(){
+        $this->display(C('Template_path').'categoryList.html');
+    }
 	public function dataList(){
 		$start   = I('start');
 		$length  = I('length');
@@ -17,14 +17,14 @@ class UserController extends AuthController {
 		$row = $length;
 		$searchStr = $search['value'];
 		if(!empty($order) && is_array($order)) $orderBy = $columns[$order[0]['column']]['data']." ".$order[0]['dir'];
-		
-		$data = D('User')->userList($p,$row,$searchStr,$orderBy,"*");
+		$param = array(
+			'p'         => $p,
+			'row'       => $row,
+			'searchStr' => $searchStr,
+			'orderBy'   => $orderBy,
+			'fields'    => "*",
+		);
+		$data = D('Article')->articleList($param);
 		$this->ajaxReturn($data,'JSON');
-	}
-	public function profile(){
-		$userId = I('userId');
-		if(empty($userId)) $userId = $this->login_user['id'];
-		$this->userInfo = D('User')->userInfo($userId,'id');
-		$this->display(C('Template_path').'userProfile.html');
 	}
 }

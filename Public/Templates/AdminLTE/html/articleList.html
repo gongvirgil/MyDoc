@@ -1,5 +1,5 @@
 <extend name="Public/Templates/AdminLTE/html/base.html" />
-<block name="title">AdminLTE 2 | User List</block>
+<block name="title">AdminLTE 2 | Article List</block>
 <block name="css-files">
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="__PUBLIC__/plugins/bootstrap/css/bootstrap.min.css">
@@ -21,13 +21,13 @@
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		  <h1>
-		    User Data List
-		    <small>userList</small>
+		    Article Data List
+		    <small>articleList</small>
 		  </h1>
 		  <ol class="breadcrumb">
 		    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
 		    <li><a href="#">Admin</a></li>
-		    <li class="active">User Data List</li>
+		    <li class="active">Article Data List</li>
 		  </ol>
 		</section>
 
@@ -37,23 +37,19 @@
 		    <div class="col-xs-12">
 		      <div class="box">
 		        <div class="box-header">
-		          <h3 class="box-title">User Data List</h3>
+		          <h3 class="box-title">Article Data List</h3>
 		        </div><!-- /.box-header -->
 		        <div class="box-body">
-		          <table id="userList" class="table table-bordered table-hover">
+		          <table id="articleList" class="table table-bordered table-hover">
 		            <thead>
 		              <tr>
 		                <th>id</th>
-		                <th>email</th>
-		                <th>username</th>
-		                <th>realname</th>
-		                <th>avatar</th>
-		                <th>sex</th>
-		                <th>reg_time</th>
-		                <th>last_login_time</th>
-		                <th>reg_ip</th>
-		                <th>last_login_ip</th>
-		                <th>login_error_count</th>
+		                <th>title</th>
+		                <th>short_title</th>
+		                <th>author</th>
+		                <th>owner_uid</th>
+		                <th>create_time</th>
+		                <th>update_time</th>
 		              </tr>
 		            </thead>
 		            <tbody>
@@ -61,16 +57,12 @@
 		            <tfoot>
 		              <tr>
 		                <th>id</th>
-		                <th>email</th>
-		                <th>username</th>
-		                <th>realname</th>
-		                <th>avatar</th>
-		                <th>sex</th>
-		                <th>reg_time</th>
-		                <th>last_login_time</th>
-		                <th>reg_ip</th>
-		                <th>last_login_ip</th>
-		                <th>login_error_count</th>
+		                <th>title</th>
+		                <th>short_title</th>
+		                <th>author</th>
+		                <th>owner_uid</th>
+		                <th>create_time</th>
+		                <th>update_time</th>
 		              </tr>
 		            </tfoot>
 		          </table>
@@ -102,26 +94,22 @@
     <!-- page script -->
     <script>
       $(function () {
-        $('#userList').DataTable({
+        $('#articleList').DataTable({
 			"serverSide": true,
 		    "ajax": {
-		        url: '{:U("Admin/User/dataList")}',
+		        url: '{:U("Article/Index/dataList")}',
 		        type: 'POST',
 		        data: function (d) {
 	            }
 		    },
 		    "columns": [
 		    	{"data":"id"},
-		    	{"data":"email"},
-		    	{"data":"username"},
-		    	{"data":"realname"},
-		    	{"data":"avatar"},
-		    	{"data":"sex","render":function(data){return data==0?"male":"female"; }},
-		    	{"data":"reg_time","render":function(data){return date('Y-m-d H:i:s',data); }},
-		    	{"data":"last_login_time","render":function(data){return date('Y-m-d H:i:s',data); }},
-		    	{"data":"reg_ip"},
-		    	{"data":"last_login_ip"},
-		    	{"data":"login_error_count"},
+		    	{"data":"title"},
+		    	{"data":"short_title"},
+		    	{"data":"author"},
+		    	{"data":"owner_uid"},
+		    	{"data":"create_time","render":function(data){return date('Y-m-d H:i:s',data); }},
+		    	{"data":"update_time","render":function(data){return date('Y-m-d H:i:s',data); }},
 		    ],
 		    "order": [[0,"desc"]],
 			"paging": true,

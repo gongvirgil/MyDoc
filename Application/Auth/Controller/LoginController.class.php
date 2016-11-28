@@ -11,7 +11,7 @@ class LoginController extends Controller {
 			$password     = I("password");
 			$v_code       = I("v_code");
 			$redirect_url = base64_decode(I("redirect_url"));
-
+			if(empty($redirect_url)) $redirect_url = __APP__;
 			\Think\Log::write("登录信息：".json_encode($_REQUEST),'DEBUG');
 
 			if( md5($v_code)!=$_SESSION[C('USER_AUTH_VERIFY_CODE')] )	$this->error("验证码错误");

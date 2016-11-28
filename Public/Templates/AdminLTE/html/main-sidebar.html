@@ -55,8 +55,19 @@
           <span class="label label-primary pull-right">4</span>
         </a>
         <ul class="treeview-menu">
-          <li <if condition="$module eq 'Mail' AND $controller eq 'Index' AND $action eq 'index'">class="active"</if>><a href="{:U('Mail/Inbox/index')}"><i class="fa fa-circle-o"></i> Inbox </a></li>
+          <li <if condition="$module eq 'Mail' AND $controller eq 'Inbox' AND $action eq 'index'">class="active"</if>><a href="{:U('Mail/Inbox/index')}"><i class="fa fa-circle-o"></i> Inbox </a></li>
           <li <if condition="$module eq 'Mail' AND $controller eq 'Media' AND $action eq 'video'">class="active"</if>><a href="{:U('Mail/Outbox/index')}"><i class="fa fa-circle-o"></i> Outbox </a></li>
+        </ul>
+      </li>
+      <li <if condition="$module eq 'Article'">class="active treeview"<else />class="treeview"</if>>
+        <a href="#">
+          <i class="fa fa-files-o"></i>
+          <span>Article</span>
+          <span class="label label-primary pull-right">4</span>
+        </a>
+        <ul class="treeview-menu">
+          <li <if condition="$module eq 'Article' AND $controller eq 'Index' AND $action eq 'index'">class="active"</if>><a href="{:U('Article/Index/index')}"><i class="fa fa-circle-o"></i> Article </a></li>
+          <li <if condition="$module eq 'Article' AND $controller eq 'Category' AND $action eq 'video'">class="active"</if>><a href="{:U('Article/Category/index')}"><i class="fa fa-circle-o"></i> Category </a></li>
         </ul>
       </li>
     </ul>

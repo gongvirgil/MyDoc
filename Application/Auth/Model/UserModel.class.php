@@ -117,4 +117,33 @@ class UserModel extends Model {
 		if(!$result)	return false;
 		return true;
 	}
+	/**
+	 * [setResetPwdSign description]
+	 * @param [type] $email [description]
+	 */
+	public function setResetPwdSign($email){
+		if(empty($email))	return false;
+		$userInfo = $this->userInfo($email);
+		if(empty($userInfo))	return false;
+		$map['reset_pwd_time'] = time();
+		$where['id'] = $userInfo['id'];
+		$this->where($where)->save($map);
+		$resetPwdSign = md5($userInfo['username'].$userInfo['salt'].$userInfo['email'].$map['reset_pwd_time']);
+		return substr($resetPwdSign,8,8);
+	}
+	/**
+	 * [checkResetPwdSign description]
+	 * @param  [type] $email [description]
+	 * @param  [type] $sign  [description]
+	 * @return [type]        [description]
+	 */
+	public function checkResetPwdSign($email,$sign){
+		if(empty($email) || empty($sign))	return false;
+		$userInfo = $this->userInfo($email);
+		if(empty($userInfo))	return false;
+		if($userInfo['reset_pwd_time'] < time()-2*60*60) return false;
+		$resetPwdSign = md5($userInfo['username'].$userInfo['salt'].$userInfo['email'].$userInfo['reset_pwd_time']);
+		if(substr($resetPwdSign,8,8) != $sign) return false;
+		return true;
+	}
 }

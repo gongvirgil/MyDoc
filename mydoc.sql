@@ -203,6 +203,7 @@ CREATE TABLE `mydoc_user` (
   `login_error_count` int(2) NOT NULL DEFAULT '0',
   `group_id` int(2) NOT NULL DEFAULT '0',
   `role_id` int(11) NOT NULL DEFAULT '0',
+  `reset_pwd_time` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`,`email`),
   UNIQUE KEY `email` (`email`) USING BTREE,
   KEY `username` (`username`) USING BTREE
@@ -211,4 +212,38 @@ CREATE TABLE `mydoc_user` (
 -- ----------------------------
 -- Records of mydoc_user
 -- ----------------------------
-INSERT INTO `mydoc_user` VALUES ('1', 'ppmoli@qq.com', 'admin', 'admin', '6554bb7556f1e2257d88f0afc100a3af', 'XjneAk', '', '0', '1467356901', '1471852227', '0.0.0.0', '127.0.0.1', '0', '0', '0');
+INSERT INTO `mydoc_user` VALUES ('1', 'ppmoli@qq.com', 'admin', 'admin', '6554bb7556f1e2257d88f0afc100a3af', 'XjneAk', '', '0', '1467356901', '1471852227', '0.0.0.0', '127.0.0.1', '0', '0', '0','');
+
+-- ----------------------------
+-- Table structure for `mydoc_article`
+-- ----------------------------
+DROP TABLE IF EXISTS `mydoc_article`;
+CREATE TABLE `mydoc_article` (
+  `id` int(7) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `short_title` varchar(255) DEFAULT NULL COMMENT '简略标题',
+  `keywords` varchar(255) DEFAULT NULL COMMENT '关键字',
+  `weight` int(6) NOT NULL DEFAULT '0' COMMENT '权重',
+  `comment_open` int(2) NOT NULL COMMENT '(1-允许评论,0-不允许评论)',
+  `titlecolor` varchar(255) NOT NULL,
+  `author` varchar(255) NOT NULL,
+  `tags` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `from` varchar(255) NOT NULL,
+  `create_time` int(11) NOT NULL COMMENT '创建日期',
+  `update_time` int(11) NOT NULL COMMENT '发布日期',
+  `article_img` varchar(200) DEFAULT NULL COMMENT '图片',
+  `attributes` set('a','b','c','d','e','f','g','h','i') NOT NULL,
+  `content` longtext NOT NULL,
+  `hits` int(11) NOT NULL,
+  `column_id` int(11) NOT NULL,
+  `ischeck` int(2) NOT NULL DEFAULT '0',
+  `owner_uid` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `owner_uid` (`owner_uid`),
+  KEY `column_id` (`column_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mydoc_article
+-- ----------------------------

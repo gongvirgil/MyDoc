@@ -1,6 +1,7 @@
 <?php
 namespace File\Controller;
 use Think\Controller;
+use Auth\Controller\AuthController;
 class MediaController extends AuthController {
     public function gallery(){
         $this->list = D('Image')->getListByOwner($this->login_user['id']);

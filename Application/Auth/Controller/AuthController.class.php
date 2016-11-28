@@ -1,5 +1,5 @@
 <?php
-namespace File\Controller;
+namespace Auth\Controller;
 use Think\Controller;
 
 class AuthController extends Controller {

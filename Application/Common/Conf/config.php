@@ -14,7 +14,7 @@ return array(
 	'DB_DEBUG'   => true,
 
     //允许访问的模块列表
-	'MODULE_ALLOW_LIST' => array('Admin','Api','Auth','Doc','File','Mail'),
+	'MODULE_ALLOW_LIST' => array('Admin','Api','Auth','Article','Doc','File','Mail'),
 	'DEFAULT_MODULE'    => 'Admin', // 默认模块
 	
 	'URL_MODEL' => 2,
@@ -27,4 +27,5 @@ return array(
 
 	//模板
 	'Template_path' => './Public/Templates/AdminLTE/html/',
+	'MailTemplate_path' => './Public/Templates/MailTemplate/',
 );
