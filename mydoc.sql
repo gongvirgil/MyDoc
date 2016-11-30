@@ -188,7 +188,7 @@ INSERT INTO `mydoc_role` VALUES ('6', '系统管理员', '100', null, '#000000')
 -- ----------------------------
 DROP TABLE IF EXISTS `mydoc_user`;
 CREATE TABLE `mydoc_user` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
   `email` varchar(50) NOT NULL COMMENT '邮箱',
   `username` varchar(50) DEFAULT NULL COMMENT '账号',
   `realname` varchar(50) DEFAULT NULL COMMENT '真实名称',
@@ -230,20 +230,49 @@ CREATE TABLE `mydoc_article` (
   `tags` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
   `from` varchar(255) NOT NULL,
-  `create_time` int(11) NOT NULL COMMENT '创建日期',
-  `update_time` int(11) NOT NULL COMMENT '发布日期',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  `update_time` int(11) NOT NULL COMMENT '更新时间',
   `article_img` varchar(200) DEFAULT NULL COMMENT '图片',
   `attributes` set('a','b','c','d','e','f','g','h','i') NOT NULL,
   `content` longtext NOT NULL,
   `hits` int(11) NOT NULL,
-  `column_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
   `ischeck` int(2) NOT NULL DEFAULT '0',
   `owner_uid` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `owner_uid` (`owner_uid`),
-  KEY `column_id` (`column_id`)
+  KEY `category_id` (`category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of mydoc_article
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `mydoc_category`
+-- ----------------------------
+DROP TABLE IF EXISTS `mydoc_category`;
+CREATE TABLE `mydoc_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(255) NOT NULL,
+  `keywords` varchar(255) DEFAULT NULL,
+  `description` longtext DEFAULT NULL,
+  `is_showdesc` int(2) NOT NULL DEFAULT '0',
+  `html_file` varchar(255) DEFAULT NULL,
+  `ismenu` tinyint(1) NOT NULL DEFAULT '1',
+  `islink` tinyint(1) NOT NULL DEFAULT '0',
+  `url` varchar(255) DEFAULT NULL,
+  `sort` int(11) NOT NULL DEFAULT '0',
+  `level` int(11) NOT NULL DEFAULT '0',
+  `father_id` int(11) NOT NULL DEFAULT '0',
+  `isshow` int(2) NOT NULL DEFAULT '0',
+  `create_time` int(11) NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int(11) NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `owner_uid` int(2) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `owner_uid` (`owner_uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of mydoc_category
 -- ----------------------------
