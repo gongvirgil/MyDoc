@@ -25,6 +25,12 @@ return array(
 	'USER_AUTH_KEY'         => 'login_user_id',
 	'USER_AUTH_VERIFY_CODE' => 'verify',
 
+	//Auth免验证模块
+	'NO_AUTH_CHECK' => array(
+		'File'  => '',
+		'Admin' => '',
+		'Article' => '',
+	),
 	//模板
 	'Template_path' => './Public/Templates/AdminLTE/html/',
 	'MailTemplate_path' => './Public/Templates/MailTemplate/',

@@ -3,7 +3,6 @@
 <block name="css-files">
     <!-- DataTables -->
     <link rel="stylesheet" href="__PUBLIC__/plugins/datatables/dataTables.bootstrap.css">
-
 </block>
 <block name="content-wrapper">
     <!-- Content Wrapper. Contains page content -->
@@ -218,49 +217,26 @@
                 type: 'POST',
                 data: function(d) {}
             },
-            "columns": [{
-                "data": "id",
-                "orderable": false,
-                "render": function(data) {
-                    return '<input type="checkbox" class="check-single check" name="" rel="' + data + '">';
-                }
-            }, {
-                "data": "id"
-            }, {
-                "data": "category_name"
-            }, {
-                "data": "description"
-            }, {
-                "data": "isshow",
-                "render": function(data) {
-                    return data == 0 ? '×' : '√';
-                }
-            }, {
-                "data": "owner_uid"
-            }, {
-                "data": "create_time",
-                "render": function(data) {
-                    return data > 0 ? date('Y-m-d H:i:s', data) : '';
-                }
-            }, {
-                "data": "update_time",
-                "render": function(data) {
-                    return data > 0 ? date('Y-m-d H:i:s', data) : '';
-                }
-            }, {
-                "data": "id",
-                "orderable": false,
-                "render": function(data, type, row, meta) {
-                    var string = '';
-                    string += '<button type="button" class="btn btn-default btn-control-box" title="编辑" target-box-id="categoryModifyBox" exclude-box-id="categoryAddBox"><i class="fa fa-edit"></i></button>';
-                    string += '<button type="button" class="btn btn-default btn-control-box" title="详情"><i class="fa fa-info"></i></button>';
-                    string = '<div class="btn-group btn-group-sm">' + string + '</div>';
-                    return string
-                }
-            }],
-            "order": [
-                [1, "desc"]
+            "columns": [
+	            {"data": "id", "orderable": false, "render": function(data) {
+	                    return '<input type="checkbox" class="check-single check" name="" rel="' + data + '">';
+	            }}, 
+	            {"data": "id"}, 
+	            {"data": "category_name"}, 
+	            {"data": "description"}, 
+	            {"data": "isshow", "render": function(data) {return data == 0 ? '×' : '√'; } }, 
+	            {"data": "owner_uid"}, 
+	            {"data": "create_time", "render": function(data) {return data > 0 ? date('Y-m-d H:i:s', data) : ''; } }, 
+	            {"data": "update_time", "render": function(data) {return data > 0 ? date('Y-m-d H:i:s', data) : ''; } }, 
+	            {"data": "id", "orderable": false, "render": function(data, type, row, meta) {
+	                    var string = '';
+	                    string += '<button type="button" class="btn btn-default btn-control-box" title="编辑" target-box-id="categoryModifyBox" exclude-box-id="categoryAddBox"><i class="fa fa-edit"></i></button>';
+	                    string += '<button type="button" class="btn btn-default btn-control-box" title="详情"><i class="fa fa-info"></i></button>';
+	                    string = '<div class="btn-group btn-group-sm">' + string + '</div>';
+	                    return string
+	            }}
             ],
+            "order": [[1, "desc"]],
             "paging": true,
             "lengthChange": true,
             "searching": true,

@@ -1,0 +1,456 @@
+<extend name="Public/Templates/AdminLTE/html/base.html" />
+<block name="title">AdminLTE 2 | Auth Manage</block>
+<block name="css-files">
+    <!-- Bootstrap 3.3.5 -->
+    <link rel="stylesheet" href="__PUBLIC__/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="__PUBLIC__/plugins/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="__PUBLIC__/plugins/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="__PUBLIC__/plugins/datatables/dataTables.bootstrap.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="__PUBLIC__/Templates/AdminLTE/css/AdminLTE.min.css">
+    <!-- AdminLTE Skins. Choose a skin from the css/skins
+         folder instead of downloading all of them to reduce the load. -->
+    <link rel="stylesheet" href="__PUBLIC__/Templates/AdminLTE/css/skins/_all-skins.min.css">
+</block>
+<block name="content-wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+		    Auth Manage
+		    <small>authManage</small>
+		  </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Admin</a></li>
+                <li class="active">Auth Manage</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row" id="authGroupRow">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Auth Group List</h3>
+                            <div class="box-tools">
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <div class="btn-group btn-group-sm">
+                                        <button type="button" class="btn btn-default btn-control-box" title="添加" target-box-id="authGroupAddBox" exclude-box-id="authGroupModifyBox"><i class="fa fa-plus"></i></button>
+                                        <button type="button" class="btn btn-default btn-delete" title="删除"><i class="fa fa-trash"></i></button>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="authGroupList" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" class="check-all check">
+                                        </th>
+                                        <th>id</th>
+                                        <th>title</th>
+                                        <th>status</th>
+                                        <th>rules</th>
+                                        <th>operate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" class="check-all check">
+                                        </th>
+                                        <th>id</th>
+                                        <th>title</th>
+                                        <th>status</th>
+                                        <th>rules</th>
+                                        <th>operate</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-6">
+                    <div class="box hidden" id="authGroupAddBox">
+                        <!-- #categoryAddBox -->
+                        <div class="box-header">
+                            <h3 class="box-title">Add AuthGroup Data</h3>
+                            <div class="box-tools">
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <div class="btn-group btn-group-sm">
+                                        <button type="button" class="btn btn-default btn-close-box" title="关闭" id=""><i class="fa fa-close"></i></button>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <form class="form-horizontal" action="{:U('Admin/Auth/modifyAuthGroup')}" method="post">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Group Title</label>
+                                    <div class="col-sm-10">
+                                        <input name="title" class="form-control" placeholder="Title" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Status</label>
+                                    <div class="col-sm-10">
+                                        <input type="radio" class="form-control minimal" name="status" value="0"> 未启用
+                                        <input type="radio" class="form-control minimal" name="status" value="1" checked=""> 启用
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Rules</label>
+                                    <div class="col-sm-10">
+                                        <select name="rules" class="form-control select2" style="width: 100%;">
+                                            <option selected="selected">Rules</option>
+                                            <option>title</option>
+                                            <option>California</option>
+                                            <option>Delaware</option>
+                                            <option>Tennessee</option>
+                                            <option>Texas</option>
+                                            <option>Washington</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-default">Cancel</button>
+                                <button type="submit" class="btn btn-info pull-right">Submit</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
+                    <!-- /.box -->
+                    <div class="box hidden" id="authGroupModifyBox">
+                        <!-- #categoryModifyBox -->
+                        <div class="box-header">
+                            <h3 class="box-title">Modify AuthGroup Data</h3>
+                            <div class="box-tools">
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <div class="btn-group btn-group-sm">
+                                        <button type="button" class="btn btn-default btn-close-box" title="关闭" id=""><i class="fa fa-close"></i></button>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <form class="form-horizontal" action="{:U('Admin/Auth/modifyAuthGroup')}" method="post">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Group Title</label>
+                                    <div class="col-sm-10">
+                                        <input name="title" class="form-control" placeholder="Title" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Status</label>
+                                    <div class="col-sm-10">
+                                        <input type="radio" class="form-control minimal" name="status" value="0"> 未启用
+                                        <input type="radio" class="form-control minimal" name="status" value="1" checked=""> 启用
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Rules</label>
+                                    <div class="col-sm-10">
+                                        <select name="rules" class="form-control select2" style="width: 100%;">
+                                            <option selected="selected">Rules</option>
+                                            <option>title</option>
+                                            <option>California</option>
+                                            <option>Delaware</option>
+                                            <option>Tennessee</option>
+                                            <option>Texas</option>
+                                            <option>Washington</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-default">Cancel</button>
+                                <button type="submit" class="btn btn-info pull-right">Submit</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+            <div class="row" id="authRuleRow">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Auth Rule List</h3>
+                            <div class="box-tools">
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <div class="btn-group btn-group-sm">
+                                        <button type="button" class="btn btn-default btn-control-box" title="添加" target-box-id="authRuleAddBox" exclude-box-id="authRuleModifyBox"><i class="fa fa-plus"></i></button>
+                                        <button type="button" class="btn btn-default btn-delete" title="删除"><i class="fa fa-trash"></i></button>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="authRuleList" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" class="check-all check">
+                                        </th>
+                                        <th>id</th>
+                                        <th>name</th>
+                                        <th>title</th>
+                                        <th>type</th>
+                                        <th>status</th>
+                                        <th>condition</th>
+                                        <th>operate</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>
+                                            <input type="checkbox" class="check-all check">
+                                        </th>
+                                        <th>id</th>
+                                        <th>name</th>
+                                        <th>title</th>
+                                        <th>type</th>
+                                        <th>status</th>
+                                        <th>condition</th>
+                                        <th>operate</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-xs-6">
+                    <div class="box hidden" id="authRuleAddBox">
+                        <!-- #categoryAddBox -->
+                        <div class="box-header">
+                            <h3 class="box-title">Add AuthRule Data</h3>
+                            <div class="box-tools">
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <div class="btn-group btn-group-sm">
+                                        <button type="button" class="btn btn-default btn-close-box" title="关闭" id=""><i class="fa fa-close"></i></button>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <form class="form-horizontal" action="{:U('Admin/Auth/modifyAuthRule')}" method="post">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Rule Name</label>
+                                    <div class="col-sm-10">
+                                        <input name="name" class="form-control" placeholder="Rule Name" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Rule Title</label>
+                                    <div class="col-sm-10">
+                                        <input name="title" class="form-control" placeholder="Title" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Type</label>
+                                    <div class="col-sm-10">
+                                        <input type="radio" class="form-control minimal" name="type" value="0" checked=""> AAA
+                                        <input type="radio" class="form-control minimal" name="type" value="1"> BBB
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Status</label>
+                                    <div class="col-sm-10">
+                                        <input type="radio" class="form-control minimal" name="status" value="0"> 未启用
+                                        <input type="radio" class="form-control minimal" name="status" value="1" checked=""> 启用
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Condition</label>
+                                    <div class="col-sm-10">
+                                        <input name="condition" class="form-control" placeholder="Condition" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-default">Cancel</button>
+                                <button type="submit" class="btn btn-info pull-right">Submit</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
+                    <!-- /.box -->
+                    <div class="box hidden" id="authRuleModifyBox">
+                        <!-- #categoryModifyBox -->
+                        <div class="box-header">
+                            <h3 class="box-title">Modify AuthRule Data</h3>
+                            <div class="box-tools">
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <div class="btn-group btn-group-sm">
+                                        <button type="button" class="btn btn-default btn-close-box" title="关闭" id=""><i class="fa fa-close"></i></button>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <form class="form-horizontal" action="{:U('Admin/Auth/modifyAuthRule')}" method="post">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Rule Name</label>
+                                    <div class="col-sm-10">
+                                        <input name="name" class="form-control" placeholder="Rule Name" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Rule Title</label>
+                                    <div class="col-sm-10">
+                                        <input name="title" class="form-control" placeholder="Title" type="text">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Type</label>
+                                    <div class="col-sm-10">
+                                        <input type="radio" class="form-control minimal" name="type" value="0" checked=""> AAA
+                                        <input type="radio" class="form-control minimal" name="type" value="1"> BBB
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Status</label>
+                                    <div class="col-sm-10">
+                                        <input type="radio" class="form-control minimal" name="status" value="0"> 未启用
+                                        <input type="radio" class="form-control minimal" name="status" value="1" checked=""> 启用
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Condition</label>
+                                    <div class="col-sm-10">
+                                        <input name="condition" class="form-control" placeholder="Condition" type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-default">Cancel</button>
+                                <button type="submit" class="btn btn-info pull-right">Submit</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+</block>
+<block name="js-files">
+    <!-- DataTables -->
+    <script src="__PUBLIC__/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="__PUBLIC__/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <!-- page script -->
+    <script>
+    $(function() {
+        $('#authGroupList').DataTable({
+            "serverSide": true,
+            "ajax": {
+                url: '{:U("Admin/Auth/authGroupList")}',
+                type: 'POST',
+                data: function(d) {}
+            },
+            "columns": [
+            	{"data": "id", "orderable": false, "render": function(data) {
+                        return '<input type="checkbox" class="check-single check" name="" rel="' + data + '">';
+                }},
+                {"data": "id"},
+                {"data": "title"},
+                {"data": "status", "render": function(data) {return data == 0 ? '未启用 ': '启用 '; }},
+                {"data": "rules"},
+	            {"data": "id", "orderable": false, "render": function(data, type, row, meta) {
+	                    var string = '';
+	                    string += '<button type="button" class="btn btn-default btn-control-box" title="编辑" target-box-id="authGroupModifyBox" exclude-box-id="authGroupAddBox"><i class="fa fa-edit"></i></button>';
+	                    string += '<button type="button" class="btn btn-default btn-control-box" title="详情"><i class="fa fa-info"></i></button>';
+	                    string = '<div class="btn-group btn-group-sm">' + string + '</div>';
+	                    return string
+	            }}
+            ],
+            "order": [[0, "desc"]], 
+            "paging": true, 
+            "lengthChange": true, 
+            "searching": true, 
+            "ordering": true, 
+            "info": true, 
+            "autoWidth": true
+        }).on('draw.dt', function() {
+            $('input[type="checkbox"], input[type="radio"]').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+        });
+
+		$('#authRuleList ').DataTable({
+			"serverSide": true,
+			"ajax": {
+				url: '{:U("Admin/Auth/authRuleList")}',
+				type: 'POST', 
+				data: function(d) {}
+			},
+			"columns": [
+				{"data": "id", "orderable": false, "render": function(data) {
+					return '<input type="checkbox" class="check-single check" name="" rel="' + data + '">';
+				}},
+				{"data": "id"},
+				{"data": "name"},
+				{"data": "title"},
+				{"data": "type", "render": function(data) {return data; } },
+				{"data": "status", "render": function(data) {return data == 0 ? '未启用 ': '启用 '; } },
+				{"data": "condition"},
+	            {"data": "id", "orderable": false, "render": function(data, type, row, meta) {
+	                    var string = '';
+	                    string += '<button type="button" class="btn btn-default btn-control-box" title="编辑" target-box-id="authRuleModifyBox" exclude-box-id="authRuleAddBox"><i class="fa fa-edit"></i></button>';
+	                    string += '<button type="button" class="btn btn-default btn-control-box" title="详情"><i class="fa fa-info"></i></button>';
+	                    string = '<div class="btn-group btn-group-sm">' + string + '</div>';
+	                    return string
+	            }}
+			], 
+			"order": [[0, "desc"]], 
+			"paging": true, 
+			"lengthChange": true, 
+			"searching": true, 
+			"ordering": true, 
+			"info": true, 
+			"autoWidth": true
+		}).on('draw.dt', function() {
+            $('input[type="checkbox"], input[type="radio"]').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+        });
+    });
+    </script>
+</block>

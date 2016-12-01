@@ -276,3 +276,33 @@ CREATE TABLE `mydoc_category` (
 -- ----------------------------
 -- Records of mydoc_category
 -- ----------------------------
+
+DROP TABLE IF EXISTS `mydoc_auth_rule`;
+CREATE TABLE `mydoc_auth_rule` (  
+    `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,  
+    `name` char(80) NOT NULL DEFAULT '',  
+    `title` char(20) NOT NULL DEFAULT '',  
+    `type` tinyint(1) NOT NULL DEFAULT '1',    
+    `status` tinyint(1) NOT NULL DEFAULT '1',  
+    `condition` char(100) NOT NULL DEFAULT '',  # 规则附件条件,满足附加条件的规则,才认为是有效的规则
+    PRIMARY KEY (`id`),  
+    UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `mydoc_auth_group`;
+CREATE TABLE `mydoc_auth_group` ( 
+    `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT, 
+    `title` char(100) NOT NULL DEFAULT '', 
+    `status` tinyint(1) NOT NULL DEFAULT '1', 
+    `rules` char(80) NOT NULL DEFAULT '', 
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `mydoc_auth_group_access`;
+CREATE TABLE `mydoc_auth_group_access` (  
+    `uid` mediumint(8) unsigned NOT NULL,  
+    `auth_gid` mediumint(8) unsigned NOT NULL, 
+    UNIQUE KEY `uid_auth_gid` (`uid`,`auth_gid`),  
+    KEY `uid` (`uid`), 
+    KEY `auth_gid` (`auth_gid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

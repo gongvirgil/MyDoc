@@ -54,15 +54,15 @@ CREATE TABLE `think_auth_group` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- think_auth_group_access 用户组明细表
--- uid:用户id，group_id：用户组id
+-- uid:用户id，auth_gid：用户组id
 -- ----------------------------
 DROP TABLE IF EXISTS `think_auth_group_access`;
 CREATE TABLE `think_auth_group_access` (  
     `uid` mediumint(8) unsigned NOT NULL,  
-    `group_id` mediumint(8) unsigned NOT NULL, 
-    UNIQUE KEY `uid_group_id` (`uid`,`group_id`),  
+    `auth_gid` mediumint(8) unsigned NOT NULL, 
+    UNIQUE KEY `uid_auth_gid` (`uid`,`auth_gid`),  
     KEY `uid` (`uid`), 
-    KEY `group_id` (`group_id`)
+    KEY `auth_gid` (`auth_gid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
  */
 
@@ -75,7 +75,7 @@ class Auth{
         'AUTH_GROUP'        => 'auth_group',        // 用户组数据表名
         'AUTH_GROUP_ACCESS' => 'auth_group_access', // 用户-用户组关系表
         'AUTH_RULE'         => 'auth_rule',         // 权限规则表
-        'AUTH_USER'         => 'member'             // 用户信息表
+        'AUTH_USER'         => 'user'             // 用户信息表
     );
 
     public function __construct() {
@@ -141,7 +141,7 @@ class Auth{
      * 根据用户id获取用户组,返回值为数组
      * @param  uid int     用户id
      * @return array       用户所属的用户组 array(
-     *     array('uid'=>'用户id','group_id'=>'用户组id','title'=>'用户组名称','rules'=>'用户组拥有的规则id,多个,号隔开'),
+     *     array('uid'=>'用户id','auth_gid'=>'用户组id','title'=>'用户组名称','rules'=>'用户组拥有的规则id,多个,号隔开'),
      *     ...)   
      */
     public function getGroups($uid) {
@@ -151,8 +151,8 @@ class Auth{
         $user_groups = M()
             ->table($this->_config['AUTH_GROUP_ACCESS'] . ' a')
             ->where("a.uid='$uid' and g.status='1'")
-            ->join($this->_config['AUTH_GROUP']." g on a.group_id=g.id")
-            ->field('uid,group_id,title,rules')->select();
+            ->join($this->_config['AUTH_GROUP']." g on a.auth_gid=g.id")
+            ->field('uid,auth_gid,title,rules')->select();
         $groups[$uid]=$user_groups?:array();
         return $groups[$uid];
     }
@@ -191,7 +191,6 @@ class Auth{
         );
         //读取用户组所有权限规则
         $rules = M()->table($this->_config['AUTH_RULE'])->where($map)->field('condition,name')->select();
-
         //循环规则，判断结果。
         $authList = array();   //
         foreach ($rules as $rule) {
@@ -223,7 +222,7 @@ class Auth{
     protected function getUserInfo($uid) {
         static $userinfo=array();
         if(!isset($userinfo[$uid])){
-             $userinfo[$uid]=M()->where(array('uid'=>$uid))->table($this->_config['AUTH_USER'])->find();
+             $userinfo[$uid]=M()->where(array('id'=>$uid))->table($this->_config['AUTH_USER'])->find();
         }
         return $userinfo[$uid];
     }
