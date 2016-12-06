@@ -50,4 +50,17 @@ class CategoryController extends AuthController {
 		if($result===false) $this->fail('失败',U('Article/Category/index'));
 		$this->success("成功",U('Article/Category/index'));
 	}
+	public function categoryInfo(){
+		$id = I('category_id');
+		$data = D('Category')->categoryInfo($id);
+		if(empty($data)){
+			$ret['status'] = 1;
+			$ret['info'] = "获取失败";
+		}else{
+			$ret['status'] = 0;
+			$ret['info'] = "获取成功";
+			$ret['data'] = $data;
+		}
+		$this->ajaxReturn($ret,'JSON');
+	}
 }

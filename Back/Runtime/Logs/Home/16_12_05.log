@@ -1,0 +1,25 @@
+[ 2016-12-05T11:27:32+08:00 ]  
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000012s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000066s ]
+NOTIC: [8] Undefined index: REQUEST_METHOD /home/cxl/MyDoc/ThinkPHP/Library/Think/App.class.php 第 31 行.
+NOTIC: [8] Undefined index: REQUEST_URI /home/cxl/MyDoc/ThinkPHP/Library/Think/Dispatcher.class.php 第 137 行.
+NOTIC: [8] Use of undefined constant _PHP_FILE_ - assumed '_PHP_FILE_' /home/cxl/MyDoc/ThinkPHP/Library/Think/Dispatcher.class.php 第 191 行.
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000224s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000260s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+NOTIC: [8] Use of undefined constant __ROOT__ - assumed '__ROOT__' /home/cxl/MyDoc/ThinkPHP/Library/Behavior/ContentReplaceBehavior.class.php 第 31 行.
+NOTIC: [8] Use of undefined constant __ROOT__ - assumed '__ROOT__' /home/cxl/MyDoc/ThinkPHP/Library/Behavior/ContentReplaceBehavior.class.php 第 38 行.
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000056s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000097s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.002825s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.002861s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000074s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000098s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000234s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000273s ]
+

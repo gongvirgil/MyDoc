@@ -230,7 +230,7 @@
 	            {"data": "update_time", "render": function(data) {return data > 0 ? date('Y-m-d H:i:s', data) : ''; } }, 
 	            {"data": "id", "orderable": false, "render": function(data, type, row, meta) {
 	                    var string = '';
-	                    string += '<button type="button" class="btn btn-default btn-control-box" title="编辑" target-box-id="categoryModifyBox" exclude-box-id="categoryAddBox"><i class="fa fa-edit"></i></button>';
+	                    string += '<button type="button" class="btn btn-default btn-control-box btn-modify" title="编辑" target-id="'+data+'" target-box-id="categoryModifyBox" exclude-box-id="categoryAddBox"><i class="fa fa-edit"></i></button>';
 	                    string += '<button type="button" class="btn btn-default btn-control-box" title="详情"><i class="fa fa-info"></i></button>';
 	                    string = '<div class="btn-group btn-group-sm">' + string + '</div>';
 	                    return string
@@ -248,6 +248,22 @@
                 checkboxClass: 'icheckbox_flat-green',
                 radioClass: 'iradio_flat-green'
             });
+	    	$('.box').on('click', '#btn-modify', function(event) {
+				var $box_id      = $(this).attr('target-box-id');
+				var $category_id = $(this).attr('target-id');
+				$.ajax({
+					url: '{:U("Article/Category/categoryInfo")}?category_id='+$category_id,
+					type: 'POST',
+					dataType: 'json',
+					data: {},
+				})
+				.done(function() {
+					console.log("success");
+				})
+				.fail(function() {
+					console.log("error");
+				});
+	    	});
         });
     });
     </script>
