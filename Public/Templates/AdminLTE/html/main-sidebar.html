@@ -68,6 +68,15 @@
                     <li <if condition="$module eq 'Article' AND $controller eq 'Category' AND $action eq 'index'">class="active"</if>><a href="{:U('Article/Category/index')}"><i class="fa fa-circle-o"></i> Category </a></li>
                 </ul>
             </li>
+            <li <if condition="$module eq 'Test'">class="active treeview"
+                <else />class="treeview"</if>>
+                <a href="#">
+                    <i class="fa fa-files-o"></i> <span>Test</span> <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li <if condition="$module eq 'Test' AND $controller eq 'BigData' AND $action eq 'index'">class="active"</if>><a href="{:U('Test/BigData/index')}"><i class="fa fa-circle-o"></i> Big Data </a></li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->
