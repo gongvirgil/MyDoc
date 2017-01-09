@@ -1,6 +1,6 @@
 //unix时间戳
-function time(){
-	return Math.round(new Date().getTime()/1000);
+function time(str=''){
+	return Math.round(new Date(str).getTime()/1000);
 }
 //unix时间戳转为date日期
 function date(format='Y-m-d H:i:s',timestamp=0)   { 

@@ -198,7 +198,6 @@ class File {
 					$mime_type  = image_type_to_mime_type($image_type);
 					header('content-type:'.$mime_type);
 					header('content-length:'.$file_size);
-					echo file_get_contents($file);
 					break;
 				default:
 					$file_name = $newNameFlag?"download".time():$file_name;
@@ -210,11 +209,16 @@ class File {
 					header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 					header('Pragma: public');
 					header('Content-Disposition: attachment;filename='.$file_name);
-					$f = fopen($file,"r");
-					echo fread($f,$file_size);
-					fclose($f);
 					break;
 			}
+			$fp = fopen($file,"r");   //   打开文件
+			$buffer = 4*1024;
+			$currentSize = 0;
+			while (!feof($fp) && $currentSize<$file_size) {
+				echo fread($fp,$buffer);
+				$currentSize += $buffer;
+			}
+			fclose($fp);
 		}
 	}
 }
