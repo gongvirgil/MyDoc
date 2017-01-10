@@ -17,16 +17,19 @@ if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 // 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
 //define('APP_DEBUG',true);
 
+//定义绝对路径
+define('PATH',dirname(__FILE__).'/');
+
 // 定义应用目录
-define('APP_PATH','./Application/');
+define('APP_PATH',PATH.'Application/');
 
 // 采用CLI运行模式运行
 define('MODE_NAME', 'cli');
 
-//绑定Home模块到当前入口文件
+//绑定Cli模块到当前入口文件
 define('BIND_MODULE', 'Cli');
 
 // 引入ThinkPHP入口文件
-require dirname(__FILE__).'/ThinkPHP/ThinkPHP.php';
+require PATH.'ThinkPHP/ThinkPHP.php';
 
 // 亲^_^ 后面不需要任何代码了 就是如此简单

@@ -10,24 +10,30 @@ class Cmd {
 
 	}
 
-
-	public function exucteCmd($cmdLine){
-		if(empty($cmdLine)) return false;
-		$this->cmdLine = $cmdLine;
-		exec($cmdLine, $this->cmdOutput, $cmdReturn);
-
-		//return $this->instance;
+	/**
+	 * [exeCmd 前台执行Cmd]
+	 * @return [type] [description]
+	 */
+	private function exeCmd(){
+		if(empty($this->cmdLine)) return false;
+		exec($this->cmdLine, $this->cmdOutput, $this->cmdReturn);
 	}
-
-	public function excuteBackCmd($cmdLine){
-		if(empty($cmdLine)) return false;
+	/**
+	 * [exeBackCmd 后台执行Cmd]
+	 * @return [type] [description]
+	 */
+	private function exeBackCmd(){
+		if(empty($this->cmdLine)) return false;
 		$this->cmdLine .= " >/dev/null 2>/dev/null &";
-		system($cmdLine,$cmdReturn);
-
-		//return $this->instance;
+		system($this->cmdLine,$this->cmdReturn);
 	}
 
-	public function getCmdResult(){
+	public function execute($cmdLine,$type=0){
+		$this->cmdLine = $cmdLine;
+		switch ($type) {
+			case 1:$this->exeBackCmd();break;
+			default:$this->exeCmd();break;
+		}
 		$result['cmdLine']   = $this->cmdLine;
 		$result['cmdOutput'] = $this->cmdOutput;
 		$result['cmdReturn'] = $this->cmdReturn;
