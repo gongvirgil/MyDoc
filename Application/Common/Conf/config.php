@@ -35,4 +35,5 @@ return array(
 	//模板
 	'Template_path' => './Public/Templates/AdminLTE/html/',
 	'MailTemplate_path' => './Public/Templates/MailTemplate/',
+	'ExcelTemplate_path' => './Public/Templates/ExcelTemplate/',
 );
