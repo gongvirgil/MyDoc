@@ -1,0 +1,12 @@
+{
+    "require": {
+        "monolog/monolog": "1.0.*",
+        "snowair/think-dotenv": "dev-master"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
+}
