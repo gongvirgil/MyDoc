@@ -62,6 +62,27 @@ CREATE TABLE `mydoc_image` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `mydoc_audio`
+-- ----------------------------
+DROP TABLE IF EXISTS `mydoc_audio`;
+CREATE TABLE `mydoc_audio` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hash` varchar(255) NOT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `path` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `text` varchar(255) DEFAULT NULL,
+  `extension` varchar(255) DEFAULT NULL,
+  `type` tinyint(2) NOT NULL DEFAULT '0',
+  `is_remote` tinyint(2) NOT NULL DEFAULT '0',
+  `owner_uid` int(11) NOT NULL DEFAULT '0',
+  `create_time` int(11) NOT NULL,
+  `modify_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+-- ----------------------------
 -- Table structure for `mydoc_item`
 -- ----------------------------
 DROP TABLE IF EXISTS `mydoc_item`;

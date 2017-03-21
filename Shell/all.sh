@@ -9,12 +9,14 @@ PINK='\E[1;35m' #粉
 RES='\E[0m'
 
 #Time
+now=`date +%Y-%m-%d""%H:%M:%S`
 today=`date +%Y-%m-%d`
 lastweek=`date -d last-week +%Y-%m-%d`
 lastmonth=`date -d last-month +%Y-%m-%d`
-timestamp=`date -d $today +%s`
-lastweekTimestamp=`date -d $lastweek +%s`
-lastmonthTimestamp=`date -d $lastmonth +%s`
+timestamp=`date -d "$now" +%s`
+todayTimestamp=`date -d "$today" +%s`
+lastweekTimestamp=`date -d "$lastweek" +%s`
+lastmonthTimestamp=`date -d "$lastmonth" +%s`
 
 function checkUser(){
 	if [ $(whoami) != "www-data" ]
@@ -42,6 +44,12 @@ function copyFile(){
    cp $1 $2
    status=$?
    echo "** cp $1 $2 ------- [$(getStatusStr $status)] **"
+}
+
+function doSql(){
+    mysql -uroot -p123456 --local-infile=1 -e "$1"  
+    status=$?
+    echo "** mysql -uroot -p'C1oudP8x&2017' --local-infile=1 -e \"$1\" ------ [$(getStatusStr status)] **"
 }
 
 # 运算

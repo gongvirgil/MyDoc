@@ -42,10 +42,16 @@
                     <i class="fa fa-files-o"></i> <span>File</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li <if condition="$module eq 'File' AND $controller eq 'Index' AND $action eq 'index'">class="active"</if>><a href="{:U('File/Index/index')}"><i class="fa fa-circle-o"></i> File Folder </a></li>
-                    <li <if condition="$module eq 'File' AND $controller eq 'Media' AND $action eq 'video'">class="active"</if>><a href="{:U('File/Media/video')}"><i class="fa fa-circle-o"></i> Video </a></li>
-                    <li <if condition="$module eq 'File' AND $controller eq 'Media' AND $action eq 'audio'">class="active"</if>><a href="{:U('File/Media/audio')}"><i class="fa fa-circle-o"></i> Audio </a></li>
-                    <li <if condition="$module eq 'File' AND $controller eq 'Media' AND $action eq 'gallery'">class="active"</if>><a href="{:U('File/Media/gallery')}"><i class="fa fa-circle-o"></i> Gallery </a></li>
+                    <li <if condition="$module eq 'File' AND $controller eq 'Folder' AND $action eq 'index'">class="active"</if>><a href="{:U('File/Folder/index')}"><i class="fa fa-circle-o"></i> Folder </a></li>
+                    <li <if condition="$module eq 'File' AND $controller eq 'Media'">class="active treeview"
+                        <else />class="treeview"</if>>
+                        <a href="#"><i class="fa fa-circle-o"></i> <span>Media</span> <i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li <eq name="action" value="gallery">class="active"</eq>><a href="{:U('File/Media/gallery')}"><i class="fa fa-circle-o"></i> Gallery </a></li>
+                            <li <eq name="action" value="audio">class="active"</eq>><a href="{:U('File/Media/audio')}"><i class="fa fa-circle-o"></i> Audio </a></li>
+                            <li <eq name="action" value="video">class="active"</eq>><a href="{:U('File/Media/video')}"><i class="fa fa-circle-o"></i> Video </a></li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
             <li <if condition="$module eq 'Mail'">class="active treeview"

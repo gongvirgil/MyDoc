@@ -2,9 +2,9 @@
 namespace File\Controller;
 use Think\Controller;
 use Auth\Controller\AuthController;
-class IndexController extends AuthController {
+class FileController extends AuthController {
     public function index(){
-        $this->display(C('Template_path').'index.html');
+        $this->display(C('Template_path').'file.html');
     }
     public function index1(){
 		import("Vendor.Virgil.File");
