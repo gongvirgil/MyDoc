@@ -31,47 +31,22 @@
                     <i class="fa fa-dashboard"></i> <span>Admin</span> <i class="fa fa-angle-left pull-right"></i>
                 </a>
                 <ul class="treeview-menu">
-                    <li <if condition="$module eq 'Admin' AND $controller eq 'Index'">class="active"</if>><a href="{:U('Admin/Index/index')}"><i class="fa fa-circle-o"></i> Dashboard </a></li>
-                    <li <if condition="$module eq 'Admin' AND $controller eq 'User'">class="active"</if>><a href="{:U('Admin/User/index')}"><i class="fa fa-circle-o"></i> User Manage </a></li>
-                    <li <if condition="$module eq 'Admin' AND $controller eq 'Auth'">class="active"</if>><a href="{:U('Admin/Auth/index')}"><i class="fa fa-circle-o"></i> Auth Manage </a></li>
-                </ul>
-            </li>
-            <li <if condition="$module eq 'File'">class="active treeview"
-                <else />class="treeview"</if>>
-                <a href="#">
-                    <i class="fa fa-files-o"></i> <span>File</span> <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li <if condition="$module eq 'File' AND $controller eq 'Folder' AND $action eq 'index'">class="active"</if>><a href="{:U('File/Folder/index')}"><i class="fa fa-circle-o"></i> Folder </a></li>
-                    <li <if condition="$module eq 'File' AND $controller eq 'Media'">class="active treeview"
+                    <li <if condition="$controller eq 'Index'">class="active"</if>><a href="{:U('Admin/Index/index')}"><i class="fa fa-circle-o"></i> Dashboard </a></li>
+                    <li <if condition="$controller eq 'User'">class="active"</if>><a href="{:U('Admin/User/index')}"><i class="fa fa-circle-o"></i> User Manage </a></li>
+                    <li <if condition="$controller eq 'Auth'">class="active"</if>><a href="{:U('Admin/Auth/index')}"><i class="fa fa-circle-o"></i> Auth Manage </a></li>
+                    <li <if condition="$controller eq 'Category'">class="active"</if>><a href="{:U('Admin/Category/index')}"><i class="fa fa-circle-o"></i> Category </a></li>
+                    <li <if condition="$controller eq 'Article'">class="active"</if>><a href="{:U('Admin/Article/index')}"><i class="fa fa-circle-o"></i> Article </a></li>
+                    <li <if condition="$controller eq 'Mail'">class="active"</if>><a href="{:U('Admin/Mail/index')}"><i class="fa fa-circle-o"></i> Mailbox </a></li>
+                    <li <if condition="$controller eq 'Folder'">class="active"</if>><a href="{:U('Admin/Folder/index')}"><i class="fa fa-circle-o"></i> Folder </a></li>
+                    <li <if condition="$controller eq 'Media'">class="active treeview"
                         <else />class="treeview"</if>>
                         <a href="#"><i class="fa fa-circle-o"></i> <span>Media</span> <i class="fa fa-angle-left pull-right"></i></a>
                         <ul class="treeview-menu">
-                            <li <eq name="action" value="gallery">class="active"</eq>><a href="{:U('File/Media/gallery')}"><i class="fa fa-circle-o"></i> Gallery </a></li>
-                            <li <eq name="action" value="audio">class="active"</eq>><a href="{:U('File/Media/audio')}"><i class="fa fa-circle-o"></i> Audio </a></li>
-                            <li <eq name="action" value="video">class="active"</eq>><a href="{:U('File/Media/video')}"><i class="fa fa-circle-o"></i> Video </a></li>
+                            <li <eq name="action" value="gallery">class="active"</eq>><a href="{:U('Admin/Media/gallery')}"><i class="fa fa-circle-o"></i> Gallery </a></li>
+                            <li <eq name="action" value="audio">class="active"</eq>><a href="{:U('Admin/Media/audio')}"><i class="fa fa-circle-o"></i> Audio </a></li>
+                            <li <eq name="action" value="video">class="active"</eq>><a href="{:U('Admin/Media/video')}"><i class="fa fa-circle-o"></i> Video </a></li>
                         </ul>
                     </li>
-                </ul>
-            </li>
-            <li <if condition="$module eq 'Mail'">class="active treeview"
-                <else />class="treeview"</if>>
-                <a href="#">
-                    <i class="fa fa-files-o"></i> <span>Mail</span> <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li <if condition="$module eq 'Mail' AND $controller eq 'Inbox' AND $action eq 'index'">class="active"</if>><a href="{:U('Mail/Inbox/index')}"><i class="fa fa-circle-o"></i> Inbox </a></li>
-                    <li <if condition="$module eq 'Mail' AND $controller eq 'Media' AND $action eq 'video'">class="active"</if>><a href="{:U('Mail/Outbox/index')}"><i class="fa fa-circle-o"></i> Outbox </a></li>
-                </ul>
-            </li>
-            <li <if condition="$module eq 'Article'">class="active treeview"
-                <else />class="treeview"</if>>
-                <a href="#">
-                    <i class="fa fa-files-o"></i> <span>Article</span> <i class="fa fa-angle-left pull-right"></i>
-                </a>
-                <ul class="treeview-menu">
-                    <li <if condition="$module eq 'Article' AND $controller eq 'Index' AND $action eq 'index'">class="active"</if>><a href="{:U('Article/Index/index')}"><i class="fa fa-circle-o"></i> Article </a></li>
-                    <li <if condition="$module eq 'Article' AND $controller eq 'Category' AND $action eq 'index'">class="active"</if>><a href="{:U('Article/Category/index')}"><i class="fa fa-circle-o"></i> Category </a></li>
                 </ul>
             </li>
             <li <if condition="$module eq 'Test'">class="active treeview"

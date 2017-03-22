@@ -10,6 +10,7 @@ class File {
 	 * @return [type]        [description]
 	 */
 	public function createDir($dir, $mode = 0777){
+		$dir = $this->formatDir($dir);
 	    if (is_dir($dir) || (@mkdir($dir, $mode) && @chmod($dir, $mode)) )
 	        return true;
 	    if (!$this->createDir(dirname($dir), $mode))
@@ -115,9 +116,13 @@ class File {
 	 */
 	public function createFile($file,$mode="w+"){
 		$dir = dirname($file);
-		if(!is_dir($dir))	$this->createDir($dir);
+		if(!is_dir($dir)){
+			if(!$this->createDir($dir)) return false;
+		}
 		$handle = fopen($file,$mode);
+		if(!$handle) return false;
 		fclose($handle);
+		return true;
 	}
 	/**
 	 * [deleteFile 删除文件]

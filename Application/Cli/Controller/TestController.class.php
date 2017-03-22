@@ -4,10 +4,10 @@ use Think\Controller;
 class TestController extends Controller {
     public function abc(){
         set_time_limit(0);
-        $text = $_SERVER['argv'][2];
+        $param = json_decode($_SERVER['argv'][2]);
         import("Vendor.Virgil.TTS");
         $TTS = new \TTS();
-        $res = $TTS->create($text);
+        $res = $TTS->create($param->text);
         var_dump($res);
     }
     public function exp(){
@@ -18,5 +18,12 @@ class TestController extends Controller {
         $Cmd = new \Cmd();
         $res = $Cmd->execute($cmdLine);
         var_dump($res);
+    }
+    public function aaa(){
+        $Cli = A('Admin/Cli');
+        //$a = $Cli->createPro();
+        var_dump($a);
+        var_dump('$a');
+
     }
 }

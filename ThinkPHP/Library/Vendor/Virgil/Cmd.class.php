@@ -27,7 +27,12 @@ class Cmd {
 		$this->cmdLine .= " >/dev/null 2>/dev/null &";
 		system($this->cmdLine,$this->cmdReturn);
 	}
-
+	/**
+	 * [execute description]
+	 * @param  [type]  $cmdLine [description]
+	 * @param  integer $type    [0-前台执行 1-后台执行]
+	 * @return [type]           [description]
+	 */
 	public function execute($cmdLine,$type=0){
 		$this->cmdLine = $cmdLine;
 		switch ($type) {

@@ -213,7 +213,7 @@
         $('#categoryList').DataTable({
             "serverSide": true,
             "ajax": {
-                url: '{:U("Article/Category/dataList")}',
+                url: '{:U("Admin/Category/dataList")}',
                 type: 'POST',
                 data: function(d) {}
             },
@@ -252,7 +252,7 @@
 				var $box_id      = $(this).attr('target-box-id');
 				var $category_id = $(this).attr('target-id');
 				$.ajax({
-					url: '{:U("Article/Category/categoryInfo")}?category_id='+$category_id,
+					url: '{:U("Admin/Category/categoryInfo")}?category_id='+$category_id,
 					type: 'POST',
 					dataType: 'json',
 					data: {},

@@ -41,3 +41,11 @@ function arrToObj($arr){
     return false;
   }
 }
+function objToArr($obj) {
+  if(!is_object($obj) && !is_array($obj)) return $obj;
+  $obj = (array)$obj;
+  foreach ($obj as $k => $v) {
+      if (gettype($v)=='object' || gettype($v)=='array') $obj[$k] = (array)objToArr($v);
+  }
+  return $obj;
+}
