@@ -10,8 +10,7 @@ class AuthController extends Controller {
 	public function _initialize(){
 		$USER_AUTH_GATEWAY = U('Auth/Login/index?redirect_url='.base64_encode($_SERVER['REQUEST_URI']));
 		C('USER_AUTH_GATEWAY',$USER_AUTH_GATEWAY);
-		import("Vendor.Virgil.Rbac");
-		\Rbac::checkLogin();
+		\Lib\Virgil\Rbac::checkLogin();
 		$map['id'] = $_SESSION[C('USER_AUTH_KEY')];
 		$this->login_user = D('User')->where($map)->find();
 		$this->module     = MODULE_NAME;
@@ -40,5 +39,9 @@ class AuthController extends Controller {
 			exit('没有权限');
 			//$this->error('没有权限',C('USER_AUTH_GATEWAY'));
 		}
+	}
+	public function _empty(){
+		$template = C('Template_path').strtolower(MODULE_NAME.'_'.CONTROLLER_NAME.'_'.ACTION_NAME.'.html');
+		$this->display($template);
 	}
 }

@@ -1,4 +1,5 @@
 <?php
+namespace Lib\Virgil;
 Class Image1 {
 	public $imageUrl;
 	public $imageInfo;

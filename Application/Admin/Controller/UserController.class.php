@@ -1,11 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-use Auth\Controller\AuthController;
-class UserController extends AuthController {
-	public function index(){
-		$this->display(C('Template_path').'userList.html');
-	}
+class UserController extends \Auth\Controller\AuthController {
 	public function dataList(){
 		$start   = I('start');
 		$length  = I('length');
@@ -20,11 +16,5 @@ class UserController extends AuthController {
 		
 		$data = D('User')->userList($p,$row,$searchStr,$orderBy,"*");
 		$this->ajaxReturn($data,'JSON');
-	}
-	public function profile(){
-		$userId = I('userId');
-		if(empty($userId)) $userId = $this->login_user['id'];
-		$this->userInfo = D('User')->userInfo($userId,'id');
-		$this->display(C('Template_path').'userProfile.html');
 	}
 }

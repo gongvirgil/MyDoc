@@ -23,8 +23,8 @@ define('PATH',dirname(__FILE__).'/');
 // 定义应用目录
 define('APP_PATH',PATH.'Application/');
 
-// 绑定Auth模块到当前入口文件
-//define('BIND_MODULE', 'Auth');
+// 绑定Admin模块到当前入口文件
+//define('BIND_MODULE', 'Admin');
 
 // 引入ThinkPHP入口文件
 require PATH.'ThinkPHP/ThinkPHP.php';

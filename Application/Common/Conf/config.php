@@ -13,8 +13,13 @@ return array(
 	'DB_CHARSET' => 'utf8',
 	'DB_DEBUG'   => true,
 
+	//命名空间配置
+	'AUTOLOAD_NAMESPACE' => array(
+	    'Lib'     => PATH.'Lib',
+	),
+
     //允许访问的模块列表
-	'MODULE_ALLOW_LIST' => array('Admin','Api','Auth','Article','Doc','File','Mail','Test'),
+	'MODULE_ALLOW_LIST' => array('Admin','Api','Auth','Doc','Test'),
 	'DEFAULT_MODULE'    => 'Admin', // 默认模块
 	
 	'URL_MODEL' => 2,
@@ -27,13 +32,23 @@ return array(
 
 	//Auth免验证模块
 	'NO_AUTH_CHECK' => array(
-		'File'  => '',
 		'Admin' => '',
-		'Article' => '',
-		'Test' => '',
+		'Test'  => '',
 	),
+
 	//模板
-	'Template_path' => './Public/Templates/AdminLTE/html/',
-	'MailTemplate_path' => './Public/Templates/MailTemplate/',
+	'Template_path'      => './Public/Templates/AdminLTE/html/',
+	'MailTemplate_path'  => './Public/Templates/MailTemplate/',
 	'ExcelTemplate_path' => './Public/Templates/ExcelTemplate/',
+
+	//邮件配置
+	'SMTP' => array(
+		'SMTP_HOST'  => 'smtp.qq.com', //SMTP服务器
+		'SMTP_PORT'  => '465', //SMTP服务器端口
+		'SMTP_USER'  => 'ppmoli@qq.com', //SMTP服务器用户名
+		'SMTP_PASS'  => 'dehrlqcnklwgbbcg', //SMTP服务器密码
+		'FROM_EMAIL' => 'ppmoli@qq.com', //发件人EMAIL
+		'FROM_NAME'  => '莫离君', //发件人名称
+	),
+
 );

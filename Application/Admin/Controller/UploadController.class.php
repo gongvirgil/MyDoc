@@ -1,8 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-use Auth\Controller\AuthController;
-class UploadController extends AuthController {
+class UploadController extends \Auth\Controller\AuthController {
 	protected $path = "";
 	public function _initialize(){
 		parent::_initialize();

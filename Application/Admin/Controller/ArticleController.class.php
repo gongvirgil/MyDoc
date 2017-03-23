@@ -1,11 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-use Auth\Controller\AuthController;
-class ArticleController extends AuthController {
-    public function index(){
-        $this->display(C('Template_path').'articleList.html');
-    }
+class ArticleController extends \Auth\Controller\AuthController {
 	public function dataList(){
 		$start     = I('start');
 		$length    = I('length');
@@ -20,7 +16,7 @@ class ArticleController extends AuthController {
 		$searchStr = $search['value'];
 		if(!empty($order) && is_array($order)) $orderBy = $columns[$order[0]['column']]['data']." ".$order[0]['dir'];
 		$param = array(
-			'owner_uid'   => $owner_uid,
+			'owner_uid' => $owner_uid,
 			'p'         => $p,
 			'row'       => $row,
 			'searchStr' => $searchStr,

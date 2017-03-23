@@ -10,9 +10,7 @@ class BaseModel extends Model {
 		if(empty($userId))	$userId = $_SESSION [C('USER_AUTH_KEY')];
 		$path = $this->path."user-".$userId."/";
 		if(!is_dir($path)){
-			import("Vendor.Virgil.File");
-			$File = new \File();
-			$File->formatDir($path);
+			$File = new \Lib\Virgil\File();
 			$File->createDir($path);
 		}
 		return $path;

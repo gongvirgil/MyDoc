@@ -1,11 +1,7 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-use Auth\Controller\AuthController;
-class CategoryController extends AuthController {
-    public function index(){
-        $this->display(C('Template_path').'categoryList.html');
-    }
+class CategoryController extends \Auth\Controller\AuthController {
 	public function dataList(){
 		$start     = I('start');
 		$length    = I('length');

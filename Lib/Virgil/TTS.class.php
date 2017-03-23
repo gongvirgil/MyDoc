@@ -1,4 +1,5 @@
 <?php
+namespace Lib\Virgil;
 class TTS {
 	protected $client;
 	protected $username;

@@ -1,19 +1,16 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-use Auth\Controller\AuthController;
-class ExportController extends AuthController {
+class ExportController extends \Auth\Controller\AuthController {
 	protected $path = "";
-	public function _initialize(){
-		parent::_initialize();
+	public function __construct(){
 		$this->path = D('Base')->getUploadPath($this->login_user['id']);
 	}
     public function image(){
     	$hash = I('h');
     	$map['hash'] = $hash;
     	$info = D('Image')->where($map)->find();
-        import("Vendor.Virgil.File");
-    	$File = new \File();
+        $File = new \Lib\Virgil\File();
     	$File->sendFile($info['path'],'image');
     }
     public function test(){
@@ -26,7 +23,11 @@ class ExportController extends AuthController {
         echo $context;
     }
     public function aa(){
-        $a = A('Cli')->createPro()->createRes()->createCmd('Test','abc')->run();
+        $Cli = new \Lib\Virgil\Cli();
+        $a = $Cli->createPro()->createRes()->createCmd('Test','abc')->run();
         var_dump($a);
+    }
+    public function aa(){
+        
     }
 }

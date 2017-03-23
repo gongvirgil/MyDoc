@@ -2,10 +2,6 @@
 namespace Admin\Controller;
 use Think\Controller;
 class AuthController extends \Auth\Controller\AuthController {
-    //Auth认证管理
-    public function index() {
-        $this->display(C('Template_path').'authIndex.html');
-    }
     //修改用户组
     public function modifyAuthGroup() {
         $id     = I('id');

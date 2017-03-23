@@ -5,8 +5,7 @@ class TestController extends Controller {
     public function abc(){
         set_time_limit(0);
         $param = json_decode($_SERVER['argv'][2]);
-        import("Vendor.Virgil.TTS");
-        $TTS = new \TTS();
+        $TTS = new \Lib\Virgil\TTS();
         $res = $TTS->create($param->text);
         var_dump($res);
     }
@@ -14,16 +13,8 @@ class TestController extends Controller {
     	$user = C('DB_USER');
     	$pwd = C('DB_PWD');
     	$cmdLine = "bash ".PATH."Shell/test.sh";
-        import("Vendor.Virgil.Cmd");
-        $Cmd = new \Cmd();
+        $Cmd = new \Lib\Virgil\Cmd();
         $res = $Cmd->execute($cmdLine);
         var_dump($res);
-    }
-    public function aaa(){
-        $Cli = A('Admin/Cli');
-        //$a = $Cli->createPro();
-        var_dump($a);
-        var_dump('$a');
-
     }
 }

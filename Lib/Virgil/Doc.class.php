@@ -1,6 +1,6 @@
 <?php
+namespace Lib\Virgil;
 use Think\Storage;
-
 class Doc {
 	protected $dir;
 

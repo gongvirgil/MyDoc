@@ -16,8 +16,7 @@ class AccountController extends Controller {
             $userInfo = D('user')->userInfo($email);
             if(empty($userInfo))    $this->error("用户名错误");
 
-            import("Vendor.Virgil.Mail");
-            $mail = new \Mail();
+            $mail = new \Lib\Virgil\Mail();
             $resetPwdSign = D('user')->setResetPwdSign($userInfo['email']);
             $email_info['title']           = "forgetPwd";
             $email_info['email']           = $userInfo['email'];
@@ -57,14 +56,4 @@ class AccountController extends Controller {
         }
         $this->display(C('Template_path').'resetPwd.html');  
     }
-	public function test(){
-        import("Vendor.Virgil.Mail");
-    	$mail = new \Mail();
-
-        $this->email_info['title'] = "测试一下哟";
-    	$template = $this->fetch('./Public/Templates/MailTemplate/1.html');
-
-    	$res = $mail->sendMail("ppmoli@126.com",'用户','测试一下哟',$template);
-    	var_dump($res);
-	}
 }

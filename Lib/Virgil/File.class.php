@@ -1,4 +1,5 @@
 <?php
+namespace Lib\Virgil;
 class File {
 	public function formatDir($dir){
 		return substr($dir, -1)=="/"?$dir:($dir."/");

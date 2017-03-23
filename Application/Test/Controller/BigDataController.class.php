@@ -3,9 +3,6 @@ namespace Test\Controller;
 use Think\Controller;
 use Auth\Controller\AuthController;
 class BigDataController extends AuthController {
-	public function index(){
-		$this->display(C('Template_path').'bigDataList.html');
-	}
 	public function dataList(){
 		$table = "pbx_00000005.e_sip_callcenter_history";
 		$start     = I('start');

@@ -1,4 +1,5 @@
 <?php
+namespace Lib\Virgil;
 class Mail {
     protected $config;
     protected $mail;
@@ -6,19 +7,22 @@ class Mail {
     public function __construct(){
 
         //邮件配置
-        $this->config = array(
-            'SMTP_HOST'   => 'smtp.qq.com', //SMTP服务器
-            'SMTP_PORT'   => '465', //SMTP服务器端口
-            'SMTP_USER'   => 'ppmoli@qq.com', //SMTP服务器用户名
-            'SMTP_PASS'   => 'dehrlqcnklwgbbcg', //SMTP服务器密码
-            'FROM_EMAIL'  => 'ppmoli@qq.com', //发件人EMAIL
-            'FROM_NAME'   => '莫离君', //发件人名称
-            'REPLY_EMAIL' => '', //回复EMAIL（留空则为发件人EMAIL）
-            'REPLY_NAME'  => '', //回复名称（留空则为发件人名称）
-        );
+        $this->config = C('SMTP');
+        if(empty($this->config)){
+            $this->config = array(
+                'SMTP_HOST'   => '', //SMTP服务器
+                'SMTP_PORT'   => '', //SMTP服务器端口
+                'SMTP_USER'   => '', //SMTP服务器用户名
+                'SMTP_PASS'   => '', //SMTP服务器密码
+                'FROM_EMAIL'  => '', //发件人EMAIL
+                'FROM_NAME'   => '', //发件人名称
+                'REPLY_EMAIL' => '', //回复EMAIL（留空则为发件人EMAIL）
+                'REPLY_NAME'  => '', //回复名称（留空则为发件人名称）
+            );
+        }
 
-        require 'PHPMailer/PHPMailerAutoload.php';
-        $this->mail             = new PHPMailer; //PHPMailer对象
+        require dirname(__FILE__).'/PHPMailer/PHPMailerAutoload.php';
+        $this->mail             = new \PHPMailer; //PHPMailer对象
         $this->mail->CharSet    = 'UTF-8'; //设定邮件编码，默认ISO-8859-1，如果发中文此项必须设置，否则乱码
         $this->mail->IsSMTP();  // 设定使用SMTP服务
         $this->mail->SMTPDebug  = 0;                     // 关闭SMTP调试功能

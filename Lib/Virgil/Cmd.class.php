@@ -1,4 +1,5 @@
 <?php
+namespace Lib\Virgil;
 class Cmd {
 	private $instance = null;
 	public $cmdLine   = '';

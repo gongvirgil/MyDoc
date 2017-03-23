@@ -1,14 +1,11 @@
 <?php
-namespace Admin\Controller;
-use Think\Controller;
-use Auth\Controller\AuthController;
-class CliController extends AuthController {
+namespace Lib\Virgil;
+class Cli {
 	public $fn;
 	public $proFn;
 	public $resFn;
 	public $cmdLine;
-	public function _initialize(){
-		parent::_initialize();
+	public function __construct(){
 		$this->fn = date('Ymd-His-').rand(1000,9999);
 	}
 	/**
@@ -19,9 +16,8 @@ class CliController extends AuthController {
 	public function createPro($content="-1"){
 		$this->proFn = PATH."Private/Temp/cliProgress/".$this->fn;
 		if(!is_file($this->proFn)){
-			import("Vendor.Virgil.File");
-			$File = new \File();
-			$File->createFile($this->proFn);	
+			$File = new \Lib\Virgil\File();
+			$File->createFile($this->proFn);
 		}
 		file_put_contents($this->proFn, $content);
 		return $this;
@@ -34,8 +30,7 @@ class CliController extends AuthController {
 	public function createRes($content="-1|Start"){
 		$this->resFn = PATH."Private/Temp/cliResult/".$this->fn;
 		if(!is_file($this->resFn)){
-			import("Vendor.Virgil.File");
-			$File = new \File();
+			$File = new \Lib\Virgil\File();
 			$File->createFile($this->resFn);	
 		}
 		file_put_contents($this->resFn, $content);
@@ -64,8 +59,7 @@ class CliController extends AuthController {
 	 * @return [type] [description]
 	 */
 	public function run(){
-        import("Vendor.Virgil.Cmd");
-        $Cmd = new \Cmd();
+        $Cmd = new \Lib\Virgil\Cmd();
         return $Cmd->execute($this->cmdLine,1);
 	}
 }
