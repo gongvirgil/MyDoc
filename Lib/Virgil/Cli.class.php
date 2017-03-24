@@ -49,8 +49,8 @@ class Cli {
 		}elseif(is_object($param)){
 			$param = objToArr($param);
 		}
-		$param['proFn'] = $this->proFn;
-		$param['resFn'] = $this->resFn;
+		if(!empty($this->proFn)) $param['proFn'] = $this->proFn;
+		if(!empty($this->resFn)) $param['resFn'] = $this->resFn;
 		$this->cmdLine = sprintf("php %scli.php %s/%s '%s'",PATH,$controller,$action,json_encode($param));
 		return $this;
 	}
