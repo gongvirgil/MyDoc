@@ -1,0 +1,176 @@
+<extend name="Public/Templates/AdminLTE/html/base.html" />
+<block name="title">AdminLTE 2 | Data Character</block>
+<block name="css-files">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="__PUBLIC__/plugins/datatables/dataTables.bootstrap.css">
+</block>
+<block name="content-wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+            Data Character List
+            <small>characterList</small>
+          </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Data Character List</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Data Character List</h3>
+                            <div class="box-tools">
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <div class="btn-group btn-group-sm">
+                                        <button type="button" class="btn btn-default btn-control-box" title="添加" target-box-id="categoryAddBox" exclude-box-id="categoryModifyBox"><i class="fa fa-plus"></i></button>
+                                        <button type="button" class="btn btn-default btn-delete" title="删除"><i class="fa fa-trash"></i></button>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="box no-border no-shadow">
+                                <div class="box-body no-padding">
+                                    <!--table-search-->
+                                    <div class="form-group">
+                                        <div class="col-xs-1">
+                                            <label>Initial</label>
+                                            <select class="form-control">
+                                                <option>A</option>
+                                                <option>B</option>
+                                                <option>C</option>
+                                                <option>D</option>
+                                                <option>E</option>
+                                                <option>F</option>
+                                                <option>G</option>
+                                                <option>H</option>
+                                                <option>J</option>
+                                                <option>K</option>
+                                                <option>L</option>
+                                                <option>M</option>
+                                                <option>N</option>
+                                                <option>O</option>
+                                                <option>P</option>
+                                                <option>Q</option>
+                                                <option>R</option>
+                                                <option>S</option>
+                                                <option>T</option>
+                                                <option>U</option>
+                                                <option>W</option>
+                                                <option>X</option>
+                                                <option>Y</option>
+                                                <option>Z</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/.table-search-->
+                            </div>
+                            <table id="characterList" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>code</th>
+                                        <th>unicode</th>
+                                        <th>name</th>
+                                        <th>pinyin</th>
+                                        <th>initial</th>
+                                        <th>stroke_num</th>
+                                        <th>stroke_order</th>
+                                        <th>wubi</th>
+                                        <th>zhengma</th>
+                                        <th>radical</th>
+                                        <th>more_pinyin</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>id</th>
+                                        <th>code</th>
+                                        <th>unicode</th>
+                                        <th>name</th>
+                                        <th>pinyin</th>
+                                        <th>initial</th>
+                                        <th>stroke_num</th>
+                                        <th>stroke_order</th>
+                                        <th>wubi</th>
+                                        <th>zhengma</th>
+                                        <th>radical</th>
+                                        <th>more_pinyin</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+</block>
+<block name="js-files">
+    <!-- DataTables -->
+    <script src="__PUBLIC__/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="__PUBLIC__/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <!-- page script -->
+    <script>
+    $(function() {
+        $('#characterList').DataTable({
+            "serverSide": true,
+            "ajax": {
+                url: '{:U("Admin/Data/characterList")}',
+                type: 'POST',
+                data: function(d) {}
+            },
+            "columns": [{
+                "data": "id"
+            }, {
+                "data": "code"
+            }, {
+                "data": "unicode"
+            }, {
+                "data": "name"
+            }, {
+                "data": "pinyin"
+            }, {
+                "data": "initial"
+            }, {
+                "data": "stroke_num"
+            }, {
+                "data": "stroke_order"
+            }, {
+                "data": "wubi"
+            }, {
+                "data": "zhengma"
+            }, {
+                "data": "radical"
+            }, {
+                "data": "more_pinyin"
+            }, ],
+            "order": [
+                [0, "asc"]
+            ],
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true
+        });
+    });
+    </script>
+</block>
