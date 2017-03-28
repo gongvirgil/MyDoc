@@ -1,5 +1,6 @@
 /Application/Runtime/
 /Application/Common/Conf/
+/Private/
 /Public/Uploads/
 /Public/Downloads/
 /vendor/
