@@ -30,49 +30,56 @@
                                     <div class="btn-group btn-group-sm">
                                         <button type="button" class="btn btn-default btn-control-box" title="添加" target-box-id="categoryAddBox" exclude-box-id="categoryModifyBox"><i class="fa fa-plus"></i></button>
                                         <button type="button" class="btn btn-default btn-delete" title="删除"><i class="fa fa-trash"></i></button>
+                                        <button type="button" class="btn btn-default btn-export" title="导出" export-list="characterList" export-url="{:U('Admin/Data/exportCharacter')}"><i class="fa fa-share"></i></button>
                                     </div>
                                 </ul>
                             </div>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
+                            <!--table-search-->
                             <div class="box no-border no-shadow">
                                 <div class="box-body no-padding">
-                                    <!--table-search-->
-                                    <div class="form-group">
-                                        <div class="col-xs-1">
-                                            <label>Initial</label>
-                                            <select class="form-control">
-                                                <option>A</option>
-                                                <option>B</option>
-                                                <option>C</option>
-                                                <option>D</option>
-                                                <option>E</option>
-                                                <option>F</option>
-                                                <option>G</option>
-                                                <option>H</option>
-                                                <option>J</option>
-                                                <option>K</option>
-                                                <option>L</option>
-                                                <option>M</option>
-                                                <option>N</option>
-                                                <option>O</option>
-                                                <option>P</option>
-                                                <option>Q</option>
-                                                <option>R</option>
-                                                <option>S</option>
-                                                <option>T</option>
-                                                <option>U</option>
-                                                <option>W</option>
-                                                <option>X</option>
-                                                <option>Y</option>
-                                                <option>Z</option>
-                                            </select>
+                                    <div class="form-group col-xs-1">
+                                        <select class="form-control" id="selectInitial">
+                                            <option value="">Initial</option>
+                                            <option value="A">A</option>
+                                            <option value="B">B</option>
+                                            <option value="C">C</option>
+                                            <option value="D">D</option>
+                                            <option value="E">E</option>
+                                            <option value="F">F</option>
+                                            <option value="G">G</option>
+                                            <option value="H">H</option>
+                                            <option value="J">J</option>
+                                            <option value="K">K</option>
+                                            <option value="L">L</option>
+                                            <option value="M">M</option>
+                                            <option value="N">N</option>
+                                            <option value="O">O</option>
+                                            <option value="P">P</option>
+                                            <option value="Q">Q</option>
+                                            <option value="R">R</option>
+                                            <option value="S">S</option>
+                                            <option value="T">T</option>
+                                            <option value="U">U</option>
+                                            <option value="W">W</option>
+                                            <option value="X">X</option>
+                                            <option value="Y">Y</option>
+                                            <option value="Z">Z</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-xs-2">
+                                        <div class="input-group input-group">
+                                            <input type="text" class="form-control" id="searchStr">
+                                            <span class="input-group-btn">
+                                              <button class="btn btn-info btn-flat" type="button" id="btnSearchStr"><i class="fa fa-search"></i></button>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
-                                <!--/.table-search-->
                             </div>
+                            <!--/.table-search-->
                             <table id="characterList" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -129,12 +136,18 @@
     <!-- page script -->
     <script>
     $(function() {
-        $('#characterList').DataTable({
+        var table = $('#characterList').DataTable({
             "serverSide": true,
             "ajax": {
                 url: '{:U("Admin/Data/characterList")}',
                 type: 'POST',
-                data: function(d) {}
+                data: function(d) {
+                    d.searchStr = $('#searchStr').val();
+                    d.initial = $('#selectInitial').find('option:checked').val();
+                    if($('.btn-export[export-list="characterList"]').length>0){
+                        $('.btn-export[export-list="characterList"]').attr('export-param',JSON.stringify(d));
+                    }
+                }
             },
             "columns": [{
                 "data": "id"
@@ -170,6 +183,12 @@
             "ordering": true,
             "info": true,
             "autoWidth": true
+        });
+        $("#selectInitial").change(function() {
+            table.ajax.reload();
+        });
+        $("#btnSearchStr").click(function() {
+            table.ajax.reload();
         });
     });
     </script>

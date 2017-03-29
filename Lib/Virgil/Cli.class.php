@@ -4,6 +4,7 @@ class Cli {
 	public $fn;
 	public $proFn;
 	public $resFn;
+	public $fileUrl;
 	public $cmdLine;
 	public function __construct(){
 		$this->fn = date('Ymd-His-').rand(1000,9999);
@@ -34,6 +35,16 @@ class Cli {
 			$File->createFile($this->resFn);	
 		}
 		file_put_contents($this->resFn, $content);
+		return $this;
+	}
+	public function createFile($filename=null){
+		if(empty($filename)) $filename = ;
+		$file = PATH."Private/Temp/createFile/".$filename;
+		if(!is_file($file)){
+			$File = new \Lib\Virgil\File();
+			$File->createFile($file);	
+		}
+		$this->fileUrl = ;
 		return $this;
 	}
 	/**

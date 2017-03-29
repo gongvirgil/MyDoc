@@ -15,7 +15,7 @@ class DataModel {
 		$orderBy = empty($param['orderBy'])?'id asc':$param['orderBy'];
 
 		if(!empty($param['initial'])) $map['initial'] = $param['initial'];
-		if(!empty($param['searchStr'])) $map['_string'] = "pinyin like '%$searchStr%'";
+		if(!empty($param['searchStr'])) $map['_string'] = sprintf("pinyin LIKE '%%%1\$s%%' OR name LIKE '%%%1\$s%%'",$param['searchStr']);
 		$model = M('chinese_character');
 		$count = $model->where($map)->count();
 		$totalPage = ceil($count/$row);

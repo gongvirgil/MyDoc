@@ -19,21 +19,30 @@ class File {
 	    return (@mkdir($dir, $mode) && @chmod($dir, $mode));
 	}
 	/**
-	 * [deleteDir 删除文件夹]
+	 * [cleanDir 清空文件夹]
 	 * @param  [type] $dir [description]
 	 * @return [type]      [description]
 	 */
-	public function deleteDir($dir) {
+	public function cleanDir($dir){
 		$dir = $this->formatDir($dir);
 		$dh=opendir($dir);
 		while ($file=readdir($dh)) {
 			if($file!="." && $file!="..") {
 				$fullpath=$dir.$file;
 				if(!is_dir($fullpath))	unlink($fullpath);
-				else	deleteDir($fullpath);
+				else	$this->deleteDir($fullpath);
 			}
 		}
 		closedir($dh);
+		return true;	
+	}
+	/**
+	 * [deleteDir 删除文件夹]
+	 * @param  [type] $dir [description]
+	 * @return [type]      [description]
+	 */
+	public function deleteDir($dir) {
+		$this->cleanDir($dir);
 		return rmdir($dir);
 	}
 	/**

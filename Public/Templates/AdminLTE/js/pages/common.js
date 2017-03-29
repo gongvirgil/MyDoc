@@ -8,7 +8,27 @@ $(function() {
         radioClass: 'iradio_flat-green'
     });
     //select
-    $("select").select2();
+    $("select.select2").select2();
+    //bootstrap-switch
+    $("[name='bootstrap-switch']").bootstrapSwitch();
+
+    //btn-export
+    $('.box').on('click', '.btn-export', function(event) {
+        var url = $(this).attr('export-url');
+        var param = $(this).attr('export-param');
+        $.ajax({
+                url: url,
+                type: 'POST',
+                dataType: 'json',
+                data: param,
+            })
+            .done(function(data) {
+                console.log(data);
+            })
+            .fail(function() {
+                console.log(111);
+            });
+    });
 
 
     $('.box').on('click', '.btn-close-box', function(event) {
