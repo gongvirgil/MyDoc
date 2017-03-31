@@ -1,17 +1,7 @@
 <?php
-return array(
+$db_array = require_once('db_config.php');
+$array = array(
 	//'配置项'=>'配置值'
-
-	//数据库配置
-	'DB_TYPE'    => 'mysql',
-	'DB_HOST'    => 'localhost',
-	'DB_NAME'    => 'mydoc',
-	'DB_USER'    => 'root',
-	'DB_PWD'     => 'C1oudP8x&2017',
-	'DB_PORT'    => 3306,
-	'DB_PREFIX'  => 'mydoc_',
-	'DB_CHARSET' => 'utf8',
-	'DB_DEBUG'   => true,
 
 	//命名空间配置
 	'AUTOLOAD_NAMESPACE' => array(
@@ -52,3 +42,4 @@ return array(
 	),
 
 );
+return array_merge($db_array,$array);
