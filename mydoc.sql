@@ -233,7 +233,7 @@ CREATE TABLE `mydoc_user` (
 -- ----------------------------
 -- Records of mydoc_user
 -- ----------------------------
-INSERT INTO `mydoc_user` VALUES ('1', 'ppmoli@qq.com', 'admin', 'admin', '6554bb7556f1e2257d88f0afc100a3af', 'XjneAk', '', '0', '1467356901', '1471852227', '0.0.0.0', '127.0.0.1', '0', '0', '0','');
+INSERT INTO `mydoc_user` VALUES ('1', 'ppmoli@qq.com', 'admin', 'admin', 'f182db0b849200f95ad919de8f460d50', 'XjneAk', '', '0', '1467356901', '1490838313', '0.0.0.0', '127.0.0.1', '0', '0', '0', '');
 
 -- ----------------------------
 -- Table structure for `mydoc_article`
