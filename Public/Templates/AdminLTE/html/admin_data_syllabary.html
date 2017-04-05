@@ -1,0 +1,179 @@
+<extend name="Public/Templates/AdminLTE/html/base.html" />
+<block name="title">AdminLTE 2 | Data Syllabary</block>
+<block name="css-files">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="__PUBLIC__/plugins/datatables/dataTables.bootstrap.css">
+</block>
+<block name="content-wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+            Data Syllabary List
+            <small>syllabaryList</small>
+          </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">Data Syllabary List</li>
+            </ol>
+        </section>
+        <!-- Main content -->
+        <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Data Syllabary List</h3>
+                            <div class="box-tools">
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <div class="btn-group btn-group-sm">
+                                        <button type="button" class="btn btn-default btn-export" title="导出" export-list="syllabaryList" export-url="{:U('Admin/Data/exportSyllabary')}"><i class="fa fa-share"></i></button>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <!--table-search-->
+                            <div class="box no-border no-shadow">
+                                <div class="box-body no-padding">
+                                    <div class="form-group col-xs-1">
+                                        <select class="form-control" id="selectRow">
+                                            <option value="">Row</option>
+                                            <option value="0">あ</option>
+                                            <option value="1">い</option>
+                                            <option value="2">う</option>
+                                            <option value="3">え</option>
+                                            <option value="4">お</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-xs-1">
+                                        <select class="form-control" id="selectCol">
+                                            <option value="">Col</option>
+                                            <option value="0">あ</option>
+                                            <option value="1">か</option>
+                                            <option value="2">さ</option>
+                                            <option value="3">た</option>
+                                            <option value="4">な</option>
+                                            <option value="5">は</option>
+                                            <option value="6">ま</option>
+                                            <option value="7">や</option>
+                                            <option value="8">ら</option>
+                                            <option value="9">わ</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-xs-2">
+                                        <div class="input-group input-group">
+                                            <input type="text" class="form-control" id="searchStr">
+                                            <span class="input-group-btn">
+                                              <button class="btn btn-info btn-flat" type="button" id="btnSearchStr"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/.table-search-->
+                            <table id="syllabaryList" class="table table-bordered table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td>あ</td>
+                                        <td>い</td>
+                                        <td>う</td>
+                                        <td>え</td>
+                                        <td>お</td>
+                                    </tr>
+                                    <tr>
+                                        <td>か</td>
+                                        <td>き</td>
+                                        <td>く</td>
+                                        <td>け</td>
+                                        <td>こ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>さ</td>
+                                        <td>し</td>
+                                        <td>す</td>
+                                        <td>せ</td>
+                                        <td>そ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>た</td>
+                                        <td>ち</td>
+                                        <td>つ</td>
+                                        <td>て</td>
+                                        <td>と</td>
+                                    </tr>
+                                    <tr>
+                                        <td>な</td>
+                                        <td>に</td>
+                                        <td>ぬ</td>
+                                        <td>ね</td>
+                                        <td>の</td>
+                                    </tr>
+                                    <tr>
+                                        <td>は</td>
+                                        <td>ひ</td>
+                                        <td>ふ</td>
+                                        <td>へ</td>
+                                        <td>ほ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ま</td>
+                                        <td>み</td>
+                                        <td>む</td>
+                                        <td>め</td>
+                                        <td>も</td>
+                                    </tr>
+                                    <tr>
+                                        <td>や</td>
+                                        <td>い</td>
+                                        <td>ゆ</td>
+                                        <td>え</td>
+                                        <td>よ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ら</td>
+                                        <td>り</td>
+                                        <td>る</td>
+                                        <td>れ</td>
+                                        <td>ろ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>わ</td>
+                                        <td>い</td>
+                                        <td>う</td>
+                                        <td>え</td>
+                                        <td>を</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+</block>
+<block name="js-files">
+    <!-- DataTables -->
+    <script src="__PUBLIC__/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="__PUBLIC__/plugins/datatables/dataTables.bootstrap.min.js"></script>
+    <!-- page script -->
+    <script>
+    $(function() {
+        $("#selectInitial").change(function() {
+            table.ajax.reload();
+        });
+        $("#btnSearchStr").click(function() {
+            table.ajax.reload();
+        });
+    });
+    </script>
+</block>
