@@ -1,5 +1,5 @@
 /Application/Runtime/
-/Application/Common/Conf/
+/Application/Common/Conf/db_config.php
 /Private/
 /Public/Uploads/
 /Public/Downloads/
