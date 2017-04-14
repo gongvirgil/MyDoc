@@ -19,15 +19,12 @@ class TestController extends Controller {
     }
 
 
-    public function aa(){     
-        $a = \Lib\Virgil\Deque::getInstance();
-        $a->inL(array(1,2));
-        sleep(10);
-        var_dump($a->queue);
-    }
-    public function bb(){     
-        $a = \Lib\Virgil\Deque::getInstance();
-        $a->inL(array(3,4));
-        var_dump($a->queue);
+    public function aa(){
+        $a = M('content_type')->select();
+        $arr = array();
+        foreach ($a as $k => $v) {
+            $arr[$v['ext']] = $v['content_type'];
+        }
+        echo(json_encode($arr));
     }
 }
