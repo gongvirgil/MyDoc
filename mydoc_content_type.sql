@@ -30,7 +30,7 @@ CREATE TABLE `mydoc_content_type` (
 -- ----------------------------
 -- Records of mydoc_content_type
 -- ----------------------------
-INSERT INTO `mydoc_content_type` VALUES ('1', '.*', 'application/octet-stream', '');
+INSERT INTO `mydoc_content_type` VALUES ('1', '.*', 'application/octet-stream', '二进制流，不知道下载文件类型');
 INSERT INTO `mydoc_content_type` VALUES ('2', '.tif', 'image/tiff', '');
 INSERT INTO `mydoc_content_type` VALUES ('3', '.001', 'application/x-001', '');
 INSERT INTO `mydoc_content_type` VALUES ('4', '.301', 'application/x-301', '');

@@ -20,11 +20,28 @@ class TestController extends Controller {
 
 
     public function aa(){
-        $a = M('content_type')->select();
-        $arr = array();
-        foreach ($a as $k => $v) {
-            $arr[$v['ext']] = $v['content_type'];
+        $handle = @fopen("/var/www/mydoc/chinese.txt", "r");
+        if ($handle) {
+            while (!feof($handle)) {
+                $buffer = fgets($handle, 4096);
+                $map['name'] = trim($buffer);
+                if(!empty($map['name'])) M('chinese_vocabulary')->add($map);
+            }
+            fclose($handle);
         }
-        echo(json_encode($arr));
+    }
+
+    public function bb(){
+
+        $str = '董懂动孔总笼拢桶捅蓊蠓汞懵';
+        $length = mb_strlen($str,'utf-8');
+        for ($i=0; $i < $length; $i++) { 
+            $word = mb_substr( $str, $i, 1, 'utf-8' );
+            $map['word']      = $word;
+            $map['tone_type'] = '平';
+            $map['group']     = '一董';
+            $map['book']      = '平水韵';
+            $info = M('chinese_rhyme')->add($map);
+        }
     }
 }

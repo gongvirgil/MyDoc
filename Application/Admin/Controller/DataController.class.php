@@ -45,4 +45,24 @@ class DataController extends \Auth\Controller\AuthController{
 		$ret['resFn'] = $Cli->resFn;
 		$this->ajaxReturn($param,'JSON');
 	}
+	public function httpContentTypeList(){
+		$start     = I('start');
+		$length    = I('length');	
+		$columns   = I('columns');
+		$order     = I('order');
+		$searchStr = I('searchStr');
+
+		$p = ceil($start/$length)+1;
+		$row = $length;
+		if(!empty($order) && is_array($order)) $orderBy = $columns[$order[0]['column']]['data']." ".$order[0]['dir'];
+		$param = array(
+			'p'         => $p,
+			'row'       => $row,
+			'orderBy'   => $orderBy,
+			'fields'    => "*",
+			'searchStr' => $searchStr,
+		);
+		$data = D('data')->httpContentTypeList($param);
+		$this->ajaxReturn($data,'JSON');
+	}
 }
