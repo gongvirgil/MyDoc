@@ -32,16 +32,21 @@ class TestController extends Controller {
     }
 
     public function bb(){
-
-        $str = '董懂动孔总笼拢桶捅蓊蠓汞懵';
-        $length = mb_strlen($str,'utf-8');
-        for ($i=0; $i < $length; $i++) { 
-            $word = mb_substr( $str, $i, 1, 'utf-8' );
-            $map['word']      = $word;
-            $map['tone_type'] = '平';
-            $map['group']     = '一董';
-            $map['book']      = '平水韵';
-            $info = M('chinese_rhyme')->add($map);
+        $arr = array();
+        $books = M('chinese_rhyme')->group('book')->select();
+        foreach ($books as $k => $v) {
+            $arr[$v['book']] = $this->cc($v['book']);
         }
+        file_put_contents("/var/www/mydoc/rhythm.json", json_encode($arr));
+    }
+    public function cc($book){
+        $arr = array();
+        $map['book'] = $book;
+        $groups = M('chinese_rhyme')->field('concat(`group`,"(",`tone_type`,")") as group_type,group_concat(word) as words')->where($map)->group('group_type')->order('group_type asc')->select();
+        //exit(M()->_sql());
+        foreach ($groups as $k => $v) {
+            $arr[$v['group_type']] = $v['words'];
+        }  
+        return $arr;  
     }
 }
