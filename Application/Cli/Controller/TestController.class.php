@@ -49,4 +49,81 @@ class TestController extends Controller {
         }  
         return $arr;  
     }
+
+    public function aaa(){
+        file_put_contents("/var/www/mydoc/a.txt", getmypid()."\r\n");
+        exit();
+        $File = new \Lib\Virgil\File();
+        $a = $File->getFileExt('/var/www/mydoc/chinese.fff');
+        echo json_encode(headers_list());
+        var_dump($a);
+/*
+[
+    "X-Powered-By: PHP/5.3.10-1ubuntu3.25", 
+    "Expires: Thu, 19 Nov 1981 08:52:00 GMT", 
+    "Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0", 
+    "Pragma: no-cache"
+]
+*/
+    }
+
+    public function unicode_decode($name){
+      $json = '{"str":"'.$name.'"}';
+      $arr = json_decode($json,true);
+      if(empty($arr)) return '';
+      return $arr['str'];
+    }
+
+    public function aaaa(){
+        for ($i=0; $i < 65536; $i++) {
+            $hex = dechex($i);
+            $unicode = sprintf("%04s", $hex);
+            $name = $this->unicode_decode("\u".$unicode);
+            if(strlen($name)<1){
+                var_dump($i);
+                var_dump($unicode);
+                var_dump($name);   
+                exit();
+            }
+            exit('end');
+            $map['name'] = $name;    
+            $res1 = M('chinese_character')->where($map)->find();$sql = M()->_sql();
+            if(empty($res1['name'])) continue;
+            $res2 = M('chinese_character')->where('unicode="'.$unicode.'"')->find();
+            if(!empty($res1) && empty($res2)){
+                var_dump($i);
+                var_dump($hex);
+                var_dump($unicode);
+                var_dump($name);
+                var_dump($res1);
+                var_dump($sql);
+                exit();
+            }
+            
+        }
+    }
+    public function bbbb(){
+        $sql = "
+            DROP TABLE IF EXISTS `mydoc_unicode`;
+            CREATE TABLE `mydoc_unicode` (
+              `id` int(10) NOT NULL COMMENT 'id',
+              `unicode` varchar(20) NOT NULL DEFAULT '' COMMENT '字符编码',
+              `name` varchar(20) DEFAULT NULL COMMENT '字符名',
+              `length` tinyint(2) DEFAULT NULL COMMENT '字符长度',
+              PRIMARY KEY (`id`),
+              KEY `unicode`(`unicode`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='unicode字符表';";
+        $a = M('', '', 'DB_CONFIG_ACTIVE')->execute($sql);
+        for ($i=0; $i < 65536; $i++) {
+            $hex = dechex($i);
+            $unicode = sprintf("%04s", $hex);
+            $name = $this->unicode_decode("\u".$unicode);
+            $map['id'] = $i;
+            $map['name'] = $name;
+            $map['unicode'] = $unicode;
+            $map['length'] = strlen($name);
+            M('unicode')->add($map);
+        }
+        exit('end');
+    }
 }
