@@ -1,5 +1,6 @@
 <?php
-$db_array = require_once('db_config.php');
+$db_array = require_once('db_config.php');//数据库配置
+$smtp_array = require_once('smtp_config.php');//SMTP配置
 $array = array(
 	//'配置项'=>'配置值'
 
@@ -31,15 +32,14 @@ $array = array(
 	'MailTemplate_path'  => './Public/Templates/MailTemplate/',
 	'ExcelTemplate_path' => './Public/Templates/ExcelTemplate/',
 
+	//Redis缓存
+	'REDIS_HOST'      => "127.0.0.1",
+	'REDIS_PORT'      => "6379",
+	'DATA_CACHE_TIME' => false,//超时时间
+	'persistent'      => false,//长连接
+
 	//邮件配置
-	'SMTP' => array(
-		'SMTP_HOST'  => 'smtp.qq.com', //SMTP服务器
-		'SMTP_PORT'  => '465', //SMTP服务器端口
-		'SMTP_USER'  => 'ppmoli@qq.com', //SMTP服务器用户名
-		'SMTP_PASS'  => 'dehrlqcnklwgbbcg', //SMTP服务器密码
-		'FROM_EMAIL' => 'ppmoli@qq.com', //发件人EMAIL
-		'FROM_NAME'  => '莫离君', //发件人名称
-	),
+	'SMTP' => $smtp_array,
 
 );
-return array_merge($db_array,$array);
+return array_merge($array,$db_array);

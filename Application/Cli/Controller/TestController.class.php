@@ -18,55 +18,6 @@ class TestController extends Controller {
         var_dump($res);
     }
 
-
-    public function aa(){
-        $handle = @fopen("/var/www/mydoc/chinese.txt", "r");
-        if ($handle) {
-            while (!feof($handle)) {
-                $buffer = fgets($handle, 4096);
-                $map['name'] = trim($buffer);
-                if(!empty($map['name'])) M('chinese_vocabulary')->add($map);
-            }
-            fclose($handle);
-        }
-    }
-
-    public function bb(){
-        $arr = array();
-        $books = M('chinese_rhyme')->group('book')->select();
-        foreach ($books as $k => $v) {
-            $arr[$v['book']] = $this->cc($v['book']);
-        }
-        file_put_contents("/var/www/mydoc/rhythm.json", json_encode($arr));
-    }
-    public function cc($book){
-        $arr = array();
-        $map['book'] = $book;
-        $groups = M('chinese_rhyme')->field('concat(`group`,"(",`tone_type`,")") as group_type,group_concat(word) as words')->where($map)->group('group_type')->order('group_type asc')->select();
-        //exit(M()->_sql());
-        foreach ($groups as $k => $v) {
-            $arr[$v['group_type']] = $v['words'];
-        }  
-        return $arr;  
-    }
-
-    public function aaa(){
-        file_put_contents("/var/www/mydoc/a.txt", getmypid()."\r\n");
-        exit();
-        $File = new \Lib\Virgil\File();
-        $a = $File->getFileExt('/var/www/mydoc/chinese.fff');
-        echo json_encode(headers_list());
-        var_dump($a);
-/*
-[
-    "X-Powered-By: PHP/5.3.10-1ubuntu3.25", 
-    "Expires: Thu, 19 Nov 1981 08:52:00 GMT", 
-    "Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0", 
-    "Pragma: no-cache"
-]
-*/
-    }
-
     public function unicode_decode($name){
       $json = '{"str":"'.$name.'"}';
       $arr = json_decode($json,true);
@@ -125,5 +76,59 @@ class TestController extends Controller {
             M('unicode')->add($map);
         }
         exit('end');
+    }
+
+/**
+ * utf8字符转换成Unicode字符
+ * @param  [type] $str Utf-8字符
+ * @return [type]           Unicode字符
+ */
+public function utf8_to_unicode($str) {
+    $unicode = 0;
+    $unicode = (ord($str[0]) & 0x1F) << 12;
+    $unicode |= (ord($str[1]) & 0x3F) << 6;
+    $unicode |= (ord($str[2]) & 0x3F);
+    return dechex($unicode);
+}
+
+/**
+ * Unicode字符转换成utf8字符
+ * @param  [type] $str Unicode字符
+ * @return [type]              Utf-8字符
+ */
+public function unicode_to_utf8($str) {
+    $utf8_str = '';
+    $code = intval(hexdec($str));
+    //这里注意转换出来的code一定得是整形，这样才会正确的按位操作
+    $ord_1 = decbin(0xe0 | ($code >> 12));
+    $ord_2 = decbin(0x80 | (($code >> 6) & 0x3f));
+    $ord_3 = decbin(0x80 | ($code & 0x3f));
+    $utf8_str = chr(bindec($ord_1)) . chr(bindec($ord_2)) . chr(bindec($ord_3));
+    return $utf8_str;
+}
+
+    public function aaa(){
+
+    }
+
+
+    public function aa(){
+        $sql = "select * from mydoc_chinese_character where unicode is null";
+        $a = M()->query($sql);
+        foreach ($a as $k => $v) {
+            $unicode = $this->utf8_to_unicode($v['name']);
+            if(empty($unicode)){
+                continue;
+            }
+            $map['unicode'] = $unicode;
+            $b = M('unicode')->where($map)->select();
+            if(empty($b) || count($b)>1 || $b[0]['name']!=$v['name']){
+                var_dump($v);exit('2222');
+            }  
+            //M('chinese_character')->where('id='.$v['id'])->save($map);
+            echo(sprintf("id=%d,unicode=%s\r\n",$v['id'],$unicode)); 
+        }
+        exit('3333');
+        exit('\r\nend');
     }
 }

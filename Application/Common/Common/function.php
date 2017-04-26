@@ -49,3 +49,30 @@ function objToArr($obj) {
   }
   return $obj;
 }
+/**
+ * utf8字符转换成Unicode字符
+ * @param  [type] $str Utf-8字符
+ * @return [type]           Unicode字符
+ */
+function utf8_to_unicode($str) {
+    $unicode = 0;
+    $unicode = (ord($str[0]) & 0x1F) << 12;
+    $unicode |= (ord($str[1]) & 0x3F) << 6;
+    $unicode |= (ord($str[2]) & 0x3F);
+    return dechex($unicode);
+}
+
+/**
+ * Unicode字符转换成utf8字符
+ * @param  [type] $str Unicode字符
+ * @return [type]              Utf-8字符
+ */
+function unicode_to_utf8($str) {
+    $utf8_str = '';
+    $code = intval(hexdec($str)); //这里注意转换出来的code一定得是整形，这样才会正确的按位操作
+    $ord_1 = decbin(0xe0 | ($code >> 12));
+    $ord_2 = decbin(0x80 | (($code >> 6) & 0x3f));
+    $ord_3 = decbin(0x80 | ($code & 0x3f));
+    $utf8_str = chr(bindec($ord_1)) . chr(bindec($ord_2)) . chr(bindec($ord_3));
+    return $utf8_str;
+}
