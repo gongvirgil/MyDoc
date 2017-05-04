@@ -14,7 +14,7 @@ class Redis {
     public static function init($config=array()) { 
         if (null === self::$instance) {
             self::$instance = new self();
-            self::$instance->redis = new Redis();
+            self::$instance->redis = new \Redis();
 	        if(empty($config['server']))  $config['server'] = '127.0.0.1';  
 	        if(empty($config['port']))  $config['port'] = '6379';
             self::$instance->redis->connect($config['server'], $config['port']); 

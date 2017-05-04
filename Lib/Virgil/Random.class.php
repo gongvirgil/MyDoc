@@ -12,4 +12,12 @@ class Random {
 	    }
 	    return '#'.$color;
 	}
+	/**
+	 * [letter description]
+	 * @return [type] [description]
+	 */
+	public function letter(){
+		return chr(mt_rand(97, 122));//小写97~122、大写65~90
+	}
+
 }
