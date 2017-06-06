@@ -24,4 +24,16 @@ class TestController extends Controller {
 		var_dump($numbers);
 		
 	}
+	public function getId(){
+		$ids = M('test')->getField('id,1');
+		for ($i=1; $i < 10000; $i++) { 
+			if(!array_key_exists($i, $ids)){
+				return $i;
+			}
+		}
+		return 0;
+	}
+	public function dd(){
+		phpinfo();
+	}
 }

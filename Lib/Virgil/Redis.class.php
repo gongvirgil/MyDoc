@@ -98,27 +98,6 @@ class Redis {
         return $this->redis->decr($key);
     }  
     /**
-     * [push 入队列]
-     * @param  [type]  $key   [description]
-     * @param  [type]  $value [description]
-     * @param  boolean $r     [description]
-     * @return [type]         [description]
-     */
-    public function push($key, $value,$r=true){
-        $value = json_encode($value, true);
-        return $r ? $this->redis->rPush($key, $value) : $this->redis->lPush($key, $value);
-    }
-    /**
-     * [pop 出队列]
-     * @param  [type]  $key [description]
-     * @param  boolean $l   [description]
-     * @return [type]       [description]
-     */
-    public function pop($key, $l=true){
-        $val = $l ? $this->redis->lPop($key) : $this->redis->rPop($key);
-        return json_decode($val, true);
-    }
-    /**
      * [keys 获取所有key]
      * @return [type] [description]
      */
@@ -133,4 +112,202 @@ class Redis {
     public function type($key){
         return $this->redis->type($key);
     }
+
+    /*******************String相关**********************/
+
+    /*******************Set相关**********************/
+
+    /*******************List相关**********************/
+
+    /**
+     * [push 入队列]
+     * @param  [type]  $list   [description]
+     * @param  [type]  $value [description]
+     * @param  boolean $r     [description]
+     * @return [type]         [description]
+     */
+    public function push($list, $value,$r=true){
+        return $r ? $this->redis->rPush($list, $value) : $this->redis->lPush($list, $value);
+    }
+    /**
+     * [pop 出队列]
+     * @param  [type]  $list [description]
+     * @param  boolean $l   [description]
+     * @return [type]       [description]
+     */
+    public function pop($list, $l=true){
+        return $l ? $this->redis->lPop($list) : $this->redis->rPop($list);
+    }
+    /**
+     * [move description]
+     * @param  [type] $list1 [description]
+     * @param  [type] $list2 [description]
+     * @return [type]        [description]
+     */
+    public function move($list1,$list2){
+        return $this->redis->rpoplpush($list1,$list2);
+    }
+    /**
+     * [size 获取队列长度]
+     * @param  [type] $list [description]
+     * @return [type]       [description]
+     */
+    public function size($list){
+        return $this->redis->lsize($list);
+    }
+    /**
+     * [getListMember description]
+     * @param  [type]  $list  [description]
+     * @param  integer $index [description]
+     * @return [type]         [description]
+     */
+    public function getListMember($list, $index=0){
+        return $this->redis->lget($list, $index);
+    }
+    /**
+     * [updateListMember description]
+     * @param  [type] $list  [description]
+     * @param  [type] $index [description]
+     * @param  [type] $value [description]
+     * @return [type]        [description]
+     */
+    public function updateListMember($list, $index, $value){
+        return $this->redis->lset($list, $index, $value);
+    }
+    /**
+     * [deleteListMembersByValue description]
+     * @param  [type]  $list  [description]
+     * @param  [type]  $value [description]
+     * @param  integer $count [description]
+     * @return [type]         [description]
+     */
+    public function deleteListMembersByValue($list, $value, $count=0){
+        return $this->redis->lrem($list, $value, $count);
+    }
+    /**
+     * [getListRange description]
+     * @param  [type]  $list  [description]
+     * @param  integer $start [description]
+     * @param  integer $end   [description]
+     * @return [type]         [description]
+     */
+    public function getListRange($list, $start=0, $end=-1){
+        return $this->redis->lrange($list, $start, $end);
+    }
+
+
+    /*******************Zset相关**********************/
+
+    /*******************Hash相关**********************/
+
+    /**
+     * [hashSet 哈希表设置key值]
+     * @param  [type]  $hTable      [description]
+     * @param  [type]  $hKey        [description]
+     * @param  [type]  $hValue      [description]
+     * @param  boolean $replaceFlag [description]
+     * @return [type]               [description]
+     */
+    public function hashSet($hTable, $hKey, $hValue, $replaceFlag=false){
+        if( $replaceFlag && $this->redis->hExists($hTable, $hKey) ){
+            $this->redis->hSet($hTable, $hKey, $hValue);
+            return true;
+        }
+        return $this->redis->hSetNx($hTable, $hKey, $hValue);
+    }
+    /**
+     * [hashGet 哈希表获取key值]
+     * @param  [type] $hTable [description]
+     * @param  [type] $hKey   [description]
+     * @return [type]         [description]
+     */
+    public function hashGet($hTable, $hKey){
+        return $this->redis->hGet($hTable, $hKey);
+    }
+    /**
+     * [hashDel 哈希表删除key]
+     * @param  [type] $hTable [description]
+     * @param  [type] $hKey   [description]
+     * @return [type]         [description]
+     */
+    public function hashDel($hTable, $hKey){
+        return $this->redis->hDel($hTable, $hKey);
+    }
+    /**
+     * [hashExists 哈希表是否存在key]
+     * @param  [type] $hTable [description]
+     * @param  [type] $hKey   [description]
+     * @return [type]         [description]
+     */
+    public function hashExists($hTable, $hKey){
+        return $this->redis->hExists($hTable, $hKey);
+    }
+    /**
+     * [hashMultiSet 哈希表设置多个key值]
+     * @param  [type] $hTable [description]
+     * @param  [type] $hArray [description]
+     * @return [type]         [description]
+     */
+    public function hashMultiSet($hTable, $hArray){
+        return $this->redis->hMSet($hTable, $hArray);
+    }
+    /**
+     * [hashMultiGet 哈希表获取多个key值]
+     * @param  [type] $hTable [description]
+     * @param  [type] $hArray [description]
+     * @return [type]         [description]
+     */
+    public function hashMultiGet($hTable, $hArray){
+        return $this->redis->hMGet($hTable, $hArray);
+    }
+    /**
+     * [hashLength 哈希表key的个数]
+     * @param  [type] $hTable [description]
+     * @return [type]         [description]
+     */
+    public function hashLength($hTable){
+        return $this->redis->hLen($hTable);
+    }
+    /**
+     * [hashKeys 获取哈希表所有key]
+     * @param  [type] $hTable [description]
+     * @return [type]         [description]
+     */
+    public function hashKeys($hTable){
+        return $this->redis->hKeys($hTable);
+    }
+    /**
+     * [hashVals 获取哈希表所有value]
+     * @param  [type] $hTable [description]
+     * @return [type]         [description]
+     * 
+     */
+    public function hashVals($hTable){
+        return $this->redis->hVals($hTable);
+    }    
+    /**
+     * [hashArrays 获取哈希表所有key-value]
+     * @return [type] [description]
+     */
+    public function hashArrays($hTable){
+        return $this->redis->hGetAll($hTable);
+    }
+    /**
+     * [hashIncByInt 哈希表key自增]
+     * @param  [type] $hTable [description]
+     * @param  [type] $hKey   [description]
+     * @return [type]         [description]
+     */
+    public function hashIncByInt($hTable, $hKey){
+        return $this->redis->hIncrBy($hTable, $hKey);
+    }
+    /**
+     * [hashIncByFloat 哈希表key自增浮点数值]
+     * @param  [type] $hTable [description]
+     * @param  [type] $hKey   [description]
+     * @return [type]         [description]
+     */
+    public function hashIncByFloat($hTable, $hKey){
+        return $this->redis->hIncrByFloat($hTable, $hKey);
+    } 
 }

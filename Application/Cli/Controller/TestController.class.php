@@ -1,6 +1,7 @@
 <?php
 namespace Cli\Controller;
 use Think\Controller;
+use Lib\Virgil;
 class TestController extends Controller {
     public function abc(){
         set_time_limit(0);
@@ -108,27 +109,22 @@ public function unicode_to_utf8($str) {
 }
 
     public function aaa(){
-
+        try{
+            $sql = "select * from mydoc11_chinese_character where unicode is null";
+            $a = M()->query($sql);
+        }catch( \Think\Exception $e){
+            var_dump($e);
+        }
     }
 
 
     public function aa(){
-        $sql = "select * from mydoc_chinese_character where unicode is null";
-        $a = M()->query($sql);
-        foreach ($a as $k => $v) {
-            $unicode = $this->utf8_to_unicode($v['name']);
-            if(empty($unicode)){
-                continue;
-            }
-            $map['unicode'] = $unicode;
-            $b = M('unicode')->where($map)->select();
-            if(empty($b) || count($b)>1 || $b[0]['name']!=$v['name']){
-                var_dump($v);exit('2222');
-            }  
-            //M('chinese_character')->where('id='.$v['id'])->save($map);
-            echo(sprintf("id=%d,unicode=%s\r\n",$v['id'],$unicode)); 
-        }
-        exit('3333');
-        exit('\r\nend');
+        $init = \Lib\Virgil\Redis::init();
+        $Redis = $init->redis;
+        $res = $init->push('numbers',array(1,2,3));
+        //$res = $Redis->lPush('numbers',1,2,3);
+        //var_dump($res);
+        $numbers = $Redis->lrange('numbers',0,-1);
+        var_dump($numbers);
     }
 }

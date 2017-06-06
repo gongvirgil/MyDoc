@@ -33,11 +33,12 @@ $array = array(
 	'ExcelTemplate_path' => './Public/Templates/ExcelTemplate/',
 
 	//Redis缓存
+	/*
 	'REDIS_HOST'      => "127.0.0.1",
 	'REDIS_PORT'      => "6379",
 	'DATA_CACHE_TIME' => false,//超时时间
 	'persistent'      => false,//长连接
-
+	*/
 	//邮件配置
 	'SMTP' => $smtp_array,
 
