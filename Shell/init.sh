@@ -7,8 +7,12 @@ PINK='\E[1;35m' #粉
 RES='\E[0m'
 
 function import(){
-	cd $1
-	source $2
+	if [[ $# -gt 1 ]]; then
+		cd $1
+		source $2
+	else
+		source $1
+	fi
 }
 
 import function common.sh

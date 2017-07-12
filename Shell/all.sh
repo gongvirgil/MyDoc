@@ -9,7 +9,7 @@ PINK='\E[1;35m' #粉
 RES='\E[0m'
 
 #Time
-now=`date +%Y-%m-%d""%H:%M:%S`
+now=`date +%Y-%m-%d" "%H:%M:%S`
 today=`date +%Y-%m-%d`
 lastweek=`date -d last-week +%Y-%m-%d`
 lastmonth=`date -d last-month +%Y-%m-%d`
