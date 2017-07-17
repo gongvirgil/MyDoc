@@ -23,3 +23,7 @@ path='/home/cxl/MyDoc/Shell/DB/'
 echo $(now) >> ${path}a.txt
 #>写入，覆盖掉原有的；
 #>>继续添加，原来的还存在。
+
+#生成数据库MD文档
+create_db_doc $user $pwd $path
+
